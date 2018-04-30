@@ -46,10 +46,12 @@ describe.only( 'Question API', () => {
 
     });
 
+    const getFields = ({ _id, prompt }) => ({ _id, prompt });
+
     it('gets all questions', () => {
         return request.get('/questions')
             .then(({ body }) => {
-                assert.deepEqual(body, [dadBod, dadJoke]);
+                assert.deepEqual(body, [dadBod, dadJoke].map(getFields));
             });
     });
 });
