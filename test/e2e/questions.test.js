@@ -1,7 +1,7 @@
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
-const Question = require('../../lib/models/Question');
+// const Question = require('../../lib/models/Question');
 // const { Types } = require('mongoose');
 
 describe.only( 'Question API', () => {
@@ -76,7 +76,7 @@ describe.only( 'Question API', () => {
     it('delete questions by id', () => {
         return request.delete(`/questions/${dadBod._id}`)
             .then(() => {
-                return request.get(`/questions/${dadBod._id}`)
+                return request.get(`/questions/${dadBod._id}`);
             })
             .then(res => {
                 assert.strictEqual(res.status, 404);
