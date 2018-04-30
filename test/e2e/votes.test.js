@@ -5,21 +5,21 @@ const Answer = require('../../lib/models/Vote');
 
 describe.only('Vote E2E API', () => {
 
-    let user = {
+    const user = {
         username: 'Mr. Jones',
         password: 'abc'
     };
 
-    let answer = {
+    const answer = {
         content: 'To get to the other side',
     };
 
-    let question = {
+    const question = {
         prompt: 'Why did the chicken?',
     };
 
     let vote1 = {
-        emoji: ':heart'
+        emoji: ':heart:'
     };
 
     let vote2 = {
@@ -34,6 +34,18 @@ describe.only('Vote E2E API', () => {
     const checkOk = res => {
         if(!res.ok) throw res.error;
         return res;
+    };
+
+    const getAllFields = ({ _id, answer, emoji, question}) => {
+        return {
+            _id, answer, emoji, question
+        };
+    };
+
+    const getQFields = ({ _id, answer, emoji }) => {
+        return {
+            _id, answer, emoji
+        };
     };
 
     before(() => {
@@ -60,6 +72,7 @@ describe.only('Vote E2E API', () => {
 
                 vote1.question = question._id;
                 vote2.question = question._id;
+                answer.question = question._id;
             });
     });
 
@@ -91,11 +104,38 @@ describe.only('Vote E2E API', () => {
                 vote1 = body;
             });
     });
-    
+
+    it('gets all votes', () => {
+        return request.post('/votes')
+            .send(vote2)
+            .then(checkOk)
+            .then(({ body }) => {
+                vote2 = body;
+                assert.ok(vote2._id);
+                return request.get(`/votes`)
+                    .then(checkOk)
+                    .then(({ body }) => {
+                        assert.deepEqual(body, [vote1, vote2].map(getAllFields));
+                    });
+            });
+    });
+
+    it('gets all votes by question', () => {
+        return request.get(`/votes?question=${question._id}`)
+            .then(checkOk)
+            .then(({ body }) => {
+                assert.deepEqual(body, [vote1, vote2].map(getQFields));
+            });
+    });
+
+    it('updates a vote', () => {
+        vote2.emoji = ':laughing:';
+
+        return request.put(`/votes/${vote2._id}`)
+            .send(vote2)
+            .then(checkOk)
+            .then(({ body }) => {
+                assert.deepEqual(body, vote2);
+            });
+    });
 });
-
-
-//Get ALL
-//get by question
-//post by question
-//put
