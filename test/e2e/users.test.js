@@ -3,7 +3,7 @@ const request = require('./request');
 const { dropCollection } = require('./db');
 const User = require('../../lib/models/User');
 
-describe.only('User E2E API', () => {
+describe('User E2E API', () => {
 
     const checkOk = res => {
         if(!res.ok) throw res.error;
