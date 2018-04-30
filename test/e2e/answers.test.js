@@ -3,7 +3,7 @@ const request = require('./request');
 const { dropCollection } = require('./db');
 // const Answer = require('../../lib/models/Answer');
 
-describe.only('Answer E2E API', () => { 
+describe('Answer E2E API', () => {
 
     let user = {
         username: 'Mr. Jones',
@@ -67,9 +67,24 @@ describe.only('Answer E2E API', () => {
                 assert.equal(__v, 0);
                 assert.deepEqual(body, {
                     _id, __v,
-                    ...answer1
+                    ...answer1,
+                    votes: []
                 });
                 answer1 = body;
+            });
+    });
+
+    it('gets a review by id', () => {
+        return request.post('/answers')
+            .send(answer2)
+            .then(checkOk)
+            .then(({ body }) => {
+                answer2 = body;
+                assert.ok(answer2._id);
+                return request.get(`/answers/${answer2._id}`);
+            })
+            .then(({ body }) => {
+                assert.deepEqual(body, answer2);
             });
     });
 
