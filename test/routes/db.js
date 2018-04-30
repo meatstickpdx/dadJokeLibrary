@@ -1,8 +1,8 @@
 require('dotenv').config({ path: './.env'});
-const connect = require('../../lib/util/dbconnect');
+const connect = require('../../lib/util/connect');
 const mongoose = require('mongoose');
 
-before(() => connect(process.env.MONGODB_URI || 'mongodb://localhost:27019/meatstick_test'));
+before(() => connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/meatstick_test'));
 after(() => mongoose.connection.close());
 
 module.exports = {
