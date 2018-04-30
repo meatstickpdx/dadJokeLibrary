@@ -4,7 +4,7 @@ const { assert } = require('chai');
 const Question = require('../../lib/models/Question');
 //const { Types } = require('mongoose');
 
-describe( 'Question API', () => {
+describe.only( 'Question API', () => {
 
     const dadJoke = {
         prompt: 'This is a dad question',
@@ -19,7 +19,6 @@ describe( 'Question API', () => {
                 const { _id, __v } = saved;
                 assert.ok(_id);
                 assert.equal( __v, 0);
-
             });
 
     });
