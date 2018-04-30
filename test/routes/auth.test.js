@@ -1,7 +1,7 @@
 const { assert } = require('chai');
 const request = require('./request');
 
-describe.only('Auth API', () => {
+describe('Auth API', () => {
 
     let token = null;
 
