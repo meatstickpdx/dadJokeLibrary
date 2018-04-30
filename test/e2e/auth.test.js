@@ -23,4 +23,25 @@ describe.only('Auth API', () => {
         assert.ok(token);
     });
 
+    it('verifies', () => {
+        return request
+            .get('/auth/verify')
+            .set('Authorization', token)
+            .then(({ body }) => {
+                assert.isOk(body.verified);
+            });
+    });
+
+    it('signin', () => {
+        return request
+            .post('/auth/signin')
+            .send({
+                username: 'Julio Martinez',
+                password: 'ilovedoingthings'
+            })
+            .then(({ body }) => {
+                assert.ok(body.token);
+            });
+    });
+
 });
