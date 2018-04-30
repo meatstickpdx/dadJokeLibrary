@@ -54,4 +54,13 @@ describe.only( 'Question API', () => {
                 assert.deepEqual(body, [dadBod, dadJoke].map(getFields));
             });
     });
+
+    // const getOneFields = ({ _id, prompt, answers }) => ({ _id, prompt, answers });
+
+    it('get questions by id', () => {
+        return request.get(`/questions/${dadBod._id}`)
+            .then(({ body }) => {
+                assert.deepEqual(body, getFields(dadBod));
+            });
+    });
 });
