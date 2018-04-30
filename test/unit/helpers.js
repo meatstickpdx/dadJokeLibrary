@@ -10,6 +10,4 @@ const getErrors = (validation, expected) => {
     return errors;
 };
 
-module.exports = {
-    getErrors
-};
+module.exports = { getErrors };

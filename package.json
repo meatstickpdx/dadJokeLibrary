@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "//pretest": "npm run lint",
+    "pretest": "npm run lint",
     "mocha": "mocha --recursive",
     "test": "npm run mocha",
     "test:watch": "npm run mocha -- -w",
