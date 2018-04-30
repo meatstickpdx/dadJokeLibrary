@@ -4,7 +4,7 @@ const connect = require('./lib/util/connect');
 
 const PORT = process.env.PORT || 3000;
 
-const MONGODB_URI = process.env.MONGOBD_URI || 'mongodb:localhost:27017/meatstick_test';
+const MONGODB_URI = process.env.MONGOBD_URI || 'mongodb:localhost:27019/meatstick_test';
 
 connect(MONGODB_URI);
 
