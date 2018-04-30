@@ -3,7 +3,7 @@ const request = require('./request');
 const { dropCollection } = require('./db');
 const Answer = require('../../lib/models/Answer');
 
-describe('Answer E2E API', () => {
+describe.only('Answer E2E API', () => {
 
     let user = {
         username: 'Mr. Jones',
@@ -86,15 +86,17 @@ describe('Answer E2E API', () => {
             .then(({ body }) => {
                 answer2 = body;
                 assert.ok(answer2._id);
-                return request.get(`/answers/${answer2._id}`);
-            })
-            .then(({ body }) => {
-                assert.deepEqual(body, answer2);
+                return request.get(`/answers/${answer2._id}`)
+                    .set('Authorization', 'admin')
+                    .then(({ body }) => {
+                        assert.deepEqual(body, answer2);
+                    });
             });
     });
 
     it('gets all answers', () => {
         return request.get('/answers')
+            .set('Authorization', 'admin')
             .then(checkOk)
             .then(({ body }) => {
                 assert.deepEqual(body, [answer1, answer2].map(getAllFields));
@@ -103,6 +105,7 @@ describe('Answer E2E API', () => {
 
     it('deletes an answer', () => {
         return request.delete(`/answers/${answer2._id}`)
+            .set('Authorization', 'admin')
             .then(() => {
                 return Answer.findById(answer2._id);
             })
@@ -113,6 +116,7 @@ describe('Answer E2E API', () => {
 
     it('returns 404 on get of non-existent id', () => {
         return request.get(`/answers/${answer2._id}`)
+            .set('Authorization', 'admin')
             .then(response => {
                 assert.equal(response.status, 404);
                 assert.match(response.body.error, new RegExp(answer2._id));

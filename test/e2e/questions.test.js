@@ -50,6 +50,7 @@ describe( 'Question API', () => {
 
     it('gets all questions', () => {
         return request.get('/questions')
+            .set('Authorization', 'admin')
             .then(({ body }) => {
                 assert.deepEqual(body, [dadBod, dadJoke].map(getFields));
             });
@@ -59,6 +60,7 @@ describe( 'Question API', () => {
 
     it('get questions by id', () => {
         return request.get(`/questions/${dadBod._id}`)
+            .set('Authorization', 'admin')
             .then(({ body }) => {
                 assert.deepEqual(body, getFields(dadBod));
             });
@@ -67,6 +69,7 @@ describe( 'Question API', () => {
     it('put questions by id', () => {
         dadBod.status = 'vote';
         return request.put(`/questions/${dadBod._id}`)
+            .set('Authorization', 'admin')
             .send(dadBod)
             .then(({ body }) => {
                 assert.deepEqual(body, dadBod);
@@ -75,8 +78,10 @@ describe( 'Question API', () => {
 
     it('delete questions by id', () => {
         return request.delete(`/questions/${dadBod._id}`)
+            .set('Authorization', 'admin')
             .then(() => {
-                return request.get(`/questions/${dadBod._id}`);
+                return request.get(`/questions/${dadBod._id}`)
+                    .set('Authorization', 'admin');
             })
             .then(res => {
                 assert.strictEqual(res.status, 404);
