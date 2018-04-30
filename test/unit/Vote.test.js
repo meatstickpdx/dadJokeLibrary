@@ -4,7 +4,7 @@ const { getErrors } = require('./helpers');
 const Vote = require('../../lib/models/Vote');
 
 
-describe.only('Vote model', () => {
+describe('Vote model', () => {
 
     it('valid good model', () => {
         const data = {

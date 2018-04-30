@@ -4,7 +4,7 @@ const { dropCollection } = require('./db');
 const Question = require('../../lib/models/Question');
 // const { Types } = require('mongoose');
 
-describe.only( 'Question API', () => {
+describe( 'Question API', () => {
     before(() => dropCollection('questions'));
 
     const dadJoke = {

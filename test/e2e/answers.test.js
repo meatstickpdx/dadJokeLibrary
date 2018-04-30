@@ -1,9 +1,9 @@
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
-// const Answer = require('../../lib/models/Answer');
+const Answer = require('../../lib/models/Answer');
 
-describe('Answer E2E API', () => {
+describe.only('Answer E2E API', () => {
 
     let user = {
         username: 'Mr. Jones',
@@ -25,6 +25,12 @@ describe('Answer E2E API', () => {
     const checkOk = res => {
         if(!res.ok) throw res.error;
         return res;
+    };
+
+    const getAllFields = ({ _id, content, question}) => {
+        return {
+            _id, content, question
+        };
     };
 
     before(() => dropCollection('users'));
@@ -67,14 +73,13 @@ describe('Answer E2E API', () => {
                 assert.equal(__v, 0);
                 assert.deepEqual(body, {
                     _id, __v,
-                    ...answer1,
-                    votes: []
+                    ...answer1
                 });
                 answer1 = body;
             });
     });
 
-    it('gets a review by id', () => {
+    it('gets an answer by id', () => {
         return request.post('/answers')
             .send(answer2)
             .then(checkOk)
@@ -88,5 +93,29 @@ describe('Answer E2E API', () => {
             });
     });
 
-    //write post + vote post
+    it('gets all answers', () => {
+        return request.get('/answers')
+            .then(checkOk)
+            .then(({ body }) => {
+                assert.deepEqual(body, [answer1, answer2].map(getAllFields));
+            });
+    });
+
+    it('deletes an answer', () => {
+        return request.delete(`/answers/${answer2._id}`)
+            .then(() => {
+                return Answer.findById(answer2._id);
+            })
+            .then(found => {
+                assert.isNull(found);
+            });
+    });
+
+    it('returns 404 on get of non-existent id', () => {
+        return request.get(`/answers/${answer2._id}`)
+            .then(response => {
+                assert.equal(response.status, 404);
+                assert.match(response.body.error, new RegExp(answer2._id));
+            });
+    });
 });
