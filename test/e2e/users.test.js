@@ -47,10 +47,19 @@ describe('User E2E API', () => {
 
     it('Retrieves users', () => {
         return request.get('/users')
+            .set('Authorization', admin.role)
             .then(( { body }) => {
                 assert.deepEqual(body[0]._id, admin._id);
                 assert.deepEqual(body[1]._id, user._id);
                 assert.equal(body.length, 2);
+            });
+    });
+
+    it('Blocks non-admins from retrieving users', () => {
+        return request.get('/users')
+            .set('Authorization', user.role)
+            .then(( { body }) => {
+                assert.deepEqual(body.error, 'Requires admin role');
             });
     });
 });
