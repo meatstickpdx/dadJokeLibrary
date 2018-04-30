@@ -63,4 +63,23 @@ describe.only( 'Question API', () => {
                 assert.deepEqual(body, getFields(dadBod));
             });
     });
+
+    it('put questions by id', () => {
+        dadBod.status = 'vote';
+        return request.put(`/questions/${dadBod._id}`)
+            .send(dadBod)
+            .then(({ body }) => {
+                assert.deepEqual(body, dadBod);
+            });
+    });
+
+    it('delete questions by id', () => {
+        return request.delete(`/questions/${dadBod._id}`)
+            .then(() => {
+                return request.get(`/questions/${dadBod._id}`)
+            })
+            .then(res => {
+                assert.strictEqual(res.status, 404);
+            });
+    });
 });
