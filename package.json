@@ -1,0 +1,45 @@
+{
+  "name": "meatstick",
+  "version": "1.0.0",
+  "description": "A simplistic router-based joke game. Fun for the whole family except mostly just for dad.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "mocha": "mocha",
+    "test": "npm run mocha",
+    "test:watch": "npm run mocha -- -w",
+    "start": "node server.js",
+    "start:watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meatstickpdx/meatstick"
+  },
+  "authors": "Victor Bofill <victorm.bofill@gmail.com>, Stephanie Smith <stephanie.lauren.design@gmail.com>, Katlyn Tucker <studioquirk@yahoo.com>, Jen Lipton <jkl.lipton@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meatstickpdx/meatstick/issues"
+  },
+  "homepage": "https://github.com/meatstickpdx/meatstick#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.0.16",
+    "morgan": "^1.9.0",
+    "validator": "^9.4.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "eslint": "^4.19.1",
+    "mocha": "^5.1.1",
+    "nodemon": "^1.17.3"
+  }
+}
