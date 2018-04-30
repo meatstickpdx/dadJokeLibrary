@@ -1,6 +1,6 @@
 const { assert } = require('chai');
 const Question = require('../../lib/models/Question');
-//const { getErrors } = require('./helpers');
+const { getErrors } = require('./helpers');
 
 describe('Question model', () => {
 
@@ -18,7 +18,14 @@ describe('Question model', () => {
 
     });
     it('requires fields', () => {
-
+        const question = new Question({});
+        const errors = getErrors(question.validateSync(), 1);
+        assert.equal(errors.prompt.kind, 'required');
+    });
+    it('checks that status is an enum', () => {
+        const question = new Question({ prompt: 'This is a dad question', status: 'fail' });
+        const errors = getErrors(question.validateSync(), 1);
+        assert.equal(errors.status.kind, 'enum');
     });
 });
 
