@@ -3,7 +3,7 @@ const request = require('./request');
 const { dropCollection } = require('./db');
 const Answer = require('../../lib/models/Answer');
 
-describe.only('Answer E2E API', () => {
+describe('Answer E2E API', () => {
 
     let user = {
         username: 'Mr. Jones',
