@@ -1,7 +1,10 @@
 const { assert } = require('chai');
 const request = require('./request');
+const { dropCollection } = require('./db');
 
 describe.skip('Auth API', () => {
+
+    beforeEach(() => dropCollection('users'));
 
     let token = null;
 
@@ -19,4 +22,5 @@ describe.skip('Auth API', () => {
     it('signup', () => {
         assert.ok(token);
     });
+
 });
