@@ -4,7 +4,7 @@ const User = require('../../lib/models/User');
 describe('User model', () => {
     it('valid and good model', () => {
         const data = {
-            name: 'Don Juan John Sean',
+            username: 'Don Juan John Sean',
             role: 'user'
         };
 
@@ -13,15 +13,15 @@ describe('User model', () => {
         assert.deepEqual(don.toJSON(), data);
     });
 
-    it('name is required', () => {
+    it('username is required', () => {
         const user = new User({});
         const errors = user.validateSync();
-        assert.equal(errors.errors.name.path, 'name');
-        assert.equal(errors.errors.name.kind, 'required');
+        assert.equal(errors.errors.username.path, 'username');
+        assert.equal(errors.errors.username.kind, 'required');
     });
 
     it('role enum is required', () => {
-        const user = new User({ name: 'Test Boi', role: 'boss' });
+        const user = new User({ username: 'Test Boi', role: 'boss' });
         const errors = user.validateSync();
         assert.equal(errors.errors.role.kind, 'enum');
     });
