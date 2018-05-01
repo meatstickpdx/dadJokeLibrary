@@ -5,6 +5,8 @@ const Answer = require('../../lib/models/Answer');
 
 describe('Answer E2E API', () => {
 
+    let token = null;
+
     const user = {
         username: 'Mr. Jones',
         password: 'abc'
@@ -46,6 +48,8 @@ describe('Answer E2E API', () => {
                 assert.ok(user._id);
 
                 question.user = user._id;
+                token = body.token;
+
                 answer1.author = user._id;
                 answer2.author = user._id;
             });
@@ -53,6 +57,7 @@ describe('Answer E2E API', () => {
 
     before(() => {
         return request.post('/questions')
+            .set('Token', token)
             .send(question)
             .then(checkOk)
             .then(({ body }) => {
@@ -66,6 +71,7 @@ describe('Answer E2E API', () => {
 
     it('saves an answer', () => {
         return request.post('/answers')
+            .set('Token', token)
             .send(answer1)
             .then(checkOk)
             .then(( {body }) => {
@@ -82,20 +88,25 @@ describe('Answer E2E API', () => {
 
     it('gets an answer by id', () => {
         return request.post('/answers')
+            .set('Token', token)
             .send(answer2)
             .then(checkOk)
             .then(({ body }) => {
                 answer2 = body;
                 assert.ok(answer2._id);
-                return request.get(`/answers/${answer2._id}`);
-            })
-            .then(({ body }) => {
-                assert.deepEqual(body, answer2);
+                return request.get(`/answers/${answer2._id}`)
+                    .set('Token', token)
+                    .set('Authorization', 'admin')
+                    .then(({ body }) => {
+                        assert.deepEqual(body, answer2);
+                    });
             });
     });
 
     it('gets all answers', () => {
         return request.get('/answers')
+            .set('Token', token)
+            .set('Authorization', 'admin')
             .then(checkOk)
             .then(({ body }) => {
                 assert.deepEqual(body, [answer1, answer2].map(getAllFields));
@@ -104,6 +115,8 @@ describe('Answer E2E API', () => {
 
     it('deletes an answer', () => {
         return request.delete(`/answers/${answer2._id}`)
+            .set('Token', token)
+            .set('Authorization', 'admin')
             .then(() => {
                 return Answer.findById(answer2._id);
             })
@@ -114,6 +127,8 @@ describe('Answer E2E API', () => {
 
     it('returns 404 on get of non-existent id', () => {
         return request.get(`/answers/${answer2._id}`)
+            .set('Token', token)
+            .set('Authorization', 'admin')
             .then(response => {
                 assert.equal(response.status, 404);
                 assert.match(response.body.error, new RegExp(answer2._id));
