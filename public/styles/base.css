@@ -42,6 +42,7 @@
   textarea {
       text-align: right;
       display: block;
+      width: calc(64%);
       margin: 0.5em 1.5em 0.5em 0;
   }
 

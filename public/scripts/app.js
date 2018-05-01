@@ -28,7 +28,7 @@
 
     page('/admin', () => adminView.init());
 
-    page('*', () => page.redirect('/login'));
+    // page('*', () => page.redirect('/login'));
 
     page({ hashbang: true });
 
