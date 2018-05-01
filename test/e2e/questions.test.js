@@ -28,7 +28,6 @@ describe.only( 'Question API', () => {
     };
 
     let dadBod = {
-        answers: [],
         prompt: '{ dadBod }',
         status: 'submit'
     };
