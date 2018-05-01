@@ -4,9 +4,12 @@ const { dropCollection } = require('./db');
 
 describe('Vote E2E API', () => {
 
+    let token = null;
+
     const user = {
         username: 'Mr. Jones',
-        password: 'abc'
+        password: 'abc',
+        role: 'admin'
     };
 
     const answer = {
@@ -55,6 +58,8 @@ describe('Vote E2E API', () => {
                 user._id = body._id;
                 assert.ok(user._id);
 
+                token = body.token;
+
                 vote1.voter = user._id;
                 vote2.voter = user._id;
                 question.user = user._id;
@@ -63,6 +68,8 @@ describe('Vote E2E API', () => {
 
     before(() => {
         return request.post('/questions')
+            .set('Authorization', 'admin')
+            .set('Token', token)
             .send(question)
             .then(checkOk)
             .then(({ body }) => {
@@ -77,6 +84,8 @@ describe('Vote E2E API', () => {
 
     before(() => {
         return request.post('/answers')
+            .set('Authorization', 'admin')
+            .set('Token', token)
             .send(answer)
             .then(checkOk)
             .then(({ body }) => {
@@ -90,6 +99,8 @@ describe('Vote E2E API', () => {
 
     it('posts a vote', () => {
         return request.post('/votes')
+            .set('Authorization', 'admin')
+            .set('Token', token)
             .send(vote1)
             .then(checkOk)
             .then(( {body }) => {
@@ -106,12 +117,16 @@ describe('Vote E2E API', () => {
 
     it('gets all votes', () => {
         return request.post('/votes')
+            .set('Authorization', 'admin')
+            .set('Token', token)
             .send(vote2)
             .then(checkOk)
             .then(({ body }) => {
                 vote2 = body;
                 assert.ok(vote2._id);
                 return request.get(`/votes`)
+                    .set('Authorization', 'admin')
+                    .set('Token', token)
                     .then(checkOk)
                     .then(({ body }) => {
                         assert.deepEqual(body, [vote1, vote2].map(getAllFields));
@@ -121,6 +136,8 @@ describe('Vote E2E API', () => {
 
     it('gets all votes by question', () => {
         return request.get(`/votes?question=${question._id}`)
+            .set('Authorization', 'admin')
+            .set('Token', token)
             .then(checkOk)
             .then(({ body }) => {
                 assert.deepEqual(body, [vote1, vote2].map(getQFields));
@@ -131,6 +148,8 @@ describe('Vote E2E API', () => {
         vote2.emoji = '😂';
 
         return request.put(`/votes/${vote2._id}`)
+            .set('Authorization', 'admin')
+            .set('Token', token)
             .send(vote2)
             .then(checkOk)
             .then(({ body }) => {

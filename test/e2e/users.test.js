@@ -4,6 +4,8 @@ const { dropCollection } = require('./db');
 
 describe('User E2E API', () => {
 
+    let token = null;
+
     const checkOk = res => {
         if(!res.ok) throw res.error;
         return res;
@@ -31,6 +33,7 @@ describe('User E2E API', () => {
             .then(( { body }) => {
                 admin._id = body._id;
                 assert.ok(body.role);
+                token = body.token;
             });
     });
 
@@ -39,7 +42,7 @@ describe('User E2E API', () => {
             .post('/auth/signup')
             .send(user)
             .then(checkOk)
-            .then(( { body }) => {
+            .then(({ body }) => {
                 user._id = body._id;
                 assert.ok(body.role);
             });
@@ -47,6 +50,7 @@ describe('User E2E API', () => {
 
     it('Retrieves users', () => {
         return request.get('/users')
+            .set('Token', token)
             .set('Authorization', admin.role)
             .then(( { body }) => {
                 assert.deepEqual(body[0]._id, admin._id);
@@ -57,7 +61,6 @@ describe('User E2E API', () => {
 
     it('Blocks non-admins from retrieving users', () => {
         return request.get('/users')
-            .set('Authorization', user.role)
             .then(( { body }) => {
                 assert.deepEqual(body.error, 'Requires admin role');
             });
