@@ -5,7 +5,7 @@ const Answer = require('../../lib/models/Answer');
 
 describe('Answer E2E API', () => {
 
-    let user = {
+    const user = {
         username: 'Mr. Jones',
         password: 'abc'
     };
@@ -18,7 +18,7 @@ describe('Answer E2E API', () => {
         content: 'Because its a stupid chicken',
     };
 
-    let question = {
+    const question = {
         prompt: 'Why did the chicken?',
     };
 
@@ -45,6 +45,7 @@ describe('Answer E2E API', () => {
                 user._id = body._id;
                 assert.ok(user._id);
 
+                question.user = user._id;
                 answer1.author = user._id;
                 answer2.author = user._id;
             });

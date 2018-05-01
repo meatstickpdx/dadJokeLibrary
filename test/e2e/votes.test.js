@@ -1,9 +1,8 @@
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
-const Answer = require('../../lib/models/Vote');
 
-describe.only('Vote E2E API', () => {
+describe('Vote E2E API', () => {
 
     const user = {
         username: 'Mr. Jones',
