@@ -42,18 +42,24 @@
             prompt: data.setQuestion,
         };
     
-        // fetch(`http://localhost:27017/questions`, {
-        //     body: JSON.stringify(question),
-        //     method: 'POST',
-        //     mode: 'cors'
-        // })
-        //     .then(response => response.json())
-        //     .then(res => {
-        //         console.log('RESPONSE', res);
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     });
+        const token = window.localStorage.getItem('token');
+
+        fetch(`http://localhost:3000/questions`, {
+            body: JSON.stringify(question),
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'token' : token,
+                'content-type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(res => {
+                console.log('RESPONSE', res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
 
     };
 
