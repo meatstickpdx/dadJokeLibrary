@@ -3,7 +3,7 @@ const request = require('./request');
 const { dropCollection } = require('./db');
 
 
-describe( 'Question API', () => {
+describe.only( 'Question API', () => {
 
 
     before(() => dropCollection('questions'));
@@ -28,6 +28,7 @@ describe( 'Question API', () => {
     };
 
     let dadBod = {
+        answers: [],
         prompt: '{ dadBod }',
         status: 'submit'
     };

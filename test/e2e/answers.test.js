@@ -7,7 +7,7 @@ describe('Answer E2E API', () => {
 
     let token = null;
 
-    let user = {
+    const user = {
         username: 'Mr. Jones',
         password: 'abc'
     };
