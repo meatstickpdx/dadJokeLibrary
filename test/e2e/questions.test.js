@@ -39,12 +39,12 @@ describe( 'Question API', () => {
                 dadJoke.user = body._id;
                 dadBod.user = body._id;
                 token = body.token;
-
             });
     });
     
     before(() => {
         return request.post('/questions')
+            .set('Token', token)
             .send(dadBod)
             .then(({ body }) => {
                 punchline.question = body._id;
@@ -64,6 +64,7 @@ describe( 'Question API', () => {
 
     it('saves a question', () => {
         return request.post('/questions')
+            .set('Token', token)
             .send(dadJoke)
             .then(({ body }) => {
                 const { _id, __v } = body;
@@ -83,6 +84,8 @@ describe( 'Question API', () => {
 
     it('gets all questions', () => {
         return request.get('/questions')
+            .set('Token', token)
+            .set('Authorization', 'admin')
             .then(({ body }) => {
                 assert.deepEqual(body, [dadBod, dadJoke].map(getFields));
             });
@@ -92,6 +95,8 @@ describe( 'Question API', () => {
 
     it('get questions by id', () => {
         return request.get(`/questions/${dadBod._id}`)
+            .set('Token', token)
+            .set('Authorization', 'admin')
             .then(({ body }) => {
                 assert.deepEqual(body, getFields(dadBod));
             });
@@ -100,6 +105,8 @@ describe( 'Question API', () => {
     it('put questions by id', () => {
         dadBod.status = 'vote';
         return request.put(`/questions/${dadBod._id}`)
+            .set('Authorization', 'admin')
+            .set('Token', token)
             .send(dadBod)
             .then(({ body }) => {
                 assert.deepEqual(body, dadBod);
@@ -123,8 +130,12 @@ describe( 'Question API', () => {
 
     it('delete questions by id', () => {
         return request.delete(`/questions/${dadBod._id}`)
+            .set('Token', token)
+            .set('Authorization', 'admin')
             .then(() => {
-                return request.get(`/questions/${dadBod._id}`);
+                return request.get(`/questions/${dadBod._id}`)
+                    .set('Token', token)
+                    .set('Authorization', 'admin');
             })
             .then(res => {
                 assert.strictEqual(res.status, 404);
