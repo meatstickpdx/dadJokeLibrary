@@ -26,7 +26,7 @@ describe('Auth API', () => {
     it('verifies', () => {
         return request
             .get('/auth/verify')
-            .set('Authorization', token)
+            .set('Token', token)
             .then(({ body }) => {
                 assert.isOk(body.verified);
             });
