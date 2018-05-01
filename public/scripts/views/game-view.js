@@ -6,7 +6,7 @@
     const errorView = module.errorView;
     const handleError = err => errorView.init(err);
 
-    let currentQuestion = {};
+    gameView.currentQuestion = {};
 
     gameView.init = () => {
         $('#game-view').show();
@@ -19,14 +19,14 @@
     },
     
     gameView.loadAnswers = () => {
-        $.get( `http://localhost:3000/questions/${currentQuestion._id}/answers`, ( answers ) => {
+        $.get( `http://localhost:3000/questions/${gameView.currentQuestion._id}/answers`, ( answers ) => {
             console.log('ANSWERS', answers);
         });
     },
 
     gameView.loadQuestion = (questions) => {
-        currentQuestion = questions[questions.length - 1];
-        $('#question').append(`<h2>${currentQuestion.prompt}</h2>`);
+        gameView.currentQuestion = questions[questions.length - 1];
+        $('#question').append(`<h2>${gameView.currentQuestion.prompt}</h2>`);
     },
 
     gameView.questionError = () => {
