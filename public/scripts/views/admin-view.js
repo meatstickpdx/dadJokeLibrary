@@ -40,21 +40,20 @@
 
         const question = {
             prompt: data.setQuestion,
-            user: '5ae7b2e9c671cf4194a74163'    
         };
     
-        fetch(`http://localhost:27017/questions`, {
-            body: JSON.stringify(question),
-            method: 'POST',
-            mode: 'cors'
-        })
-            .then(response => response.json())
-            .then(res => {
-                console.log('RESPONSE', res);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        // fetch(`http://localhost:27017/questions`, {
+        //     body: JSON.stringify(question),
+        //     method: 'POST',
+        //     mode: 'cors'
+        // })
+        //     .then(response => response.json())
+        //     .then(res => {
+        //         console.log('RESPONSE', res);
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     });
 
     };
 

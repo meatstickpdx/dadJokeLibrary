@@ -2,7 +2,6 @@
 
 (function(module) {
 
-    const Joke = module.Joke;
     const authView = module.authView;
     const gameView = module.gameView;
     const resultsView = module.resultsView;
