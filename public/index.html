@@ -22,24 +22,60 @@
 
         <p>:image-of-like-a-jackhammer-or-something:</p> 
         <section id="auth-view" class="view">
-            <form>
+            <form id="authForm">
                 <label for="email" class="e-mail">E-mail:</label>
-                <input id="email" type="text">
+                <input id="email" type="text" required>
              
                 <label for="password" class="password">Password:</label>
-                <input id="password" type="text">
+                <input id="password" type="text" required>
              
                 <button id="login">Login</button>
                 <button id="sign-up">Sign-Up</button>
+                <div class="status hidden"></div>
             </form>
         </section>   
+        <form id="questionForm">
+                <label for="setQuestion" class="setQuestion">Set Question:</label>
+                <textarea id="setQuestion" cols="49" rows="4" required></textarea>
 
+                <div class="status hidden"></div>
+                <button id="submitQuestion" type="submit">Set</button>
+        </form>
+        <form id="gameTimeForm">
+                <label for="submissionTime" class="submissionTime">Submission Timer (mins):</label>
+                <input id="submissionTime" type="number" min="0" max="60" required>
+
+                <label for="votingTime" class="votingTime">Voting Timer (mins):</label>
+                <input id="votingTime" type="number" min="0" max="60" required>
+
+                <div class="status hidden"></div>
+                <button id="submitQuestion" type="submit">Set</button>
+        </form>
+        <section id="admin-view" class="view">
+
+        </section>
         <section id="game-view" class="view"></section>
         <section id="results-view" class="view"></section>
-        <section id="admin-view" class="view"></section>
+        <section id="error-view" class="view"></section>
     </main>
     <!-- TEMPLATES -->
-    <script id="joke-template" type="text/html"></script>
+    <script id="joke-template" type="text/x-handlebars-template">
+        <section class="joke card">
+            <section class="joke prompt">
+                <h2>{{question}}</h2>
+            </section>
+            <section class="joke captions">
+                {{#each answer}}
+                <section class="answer card">
+                    <h3>{{answer}}</h3>
+                    <a href="/vote/{{quesitonID}}/{{answerID}}/😂" class="laughing">😂</a>
+                    <a href="/vote/{{quesitonID}}/{{answerID}}/🤦" class="facepalm">🤦</a>
+                    <a href="/vote/{{quesitonID}}/{{answerID}}/💖" class="heart">💖</a>
+                </section>
+                {{/each}}
+            </section>
+        </section>
+    </script>
     <script id="error-template" type="text/x-handlebars-template">
         <h3>Oops, something went wrong!</h3>
         <p>{{status}}: {{statusText}}</p>

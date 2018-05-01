@@ -2,10 +2,10 @@
 
 (function (module) {
 
-    function Game(data) {
+    function Joke(data) {
 
     }
 
-    module.Game = Game;
+    module.Joke = Joke;
 
 })(window.module);

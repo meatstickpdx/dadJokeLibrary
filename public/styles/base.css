@@ -2,6 +2,10 @@
     box-sizing: border-box;
   }
   
+  .hidden {
+      display: none;
+  }
+
   form {
     padding: 1em;
     background: #f9f9f9;
@@ -34,6 +38,16 @@
     display: block;
     padding: 0.5em 1.5em 0.5em 0;
   }
+
+  textarea {
+      text-align: right;
+      display: block;
+      margin: 0.5em 1.5em 0.5em 0;
+  }
+
+  textarea:focus {
+    outline: 3px solid gold;
+  }
   
   input {
     width: 100%;
@@ -43,6 +57,11 @@
 
   input:focus {
     outline: 3px solid gold;
+  }
+
+  .status {
+      height: 2em;
+      width: calc(50% - 10px);
   }
   
   @media (min-width: 400px) {
@@ -60,6 +79,11 @@
       width: calc(100% - 200px);
     }
   
+    button{
+        float: right;
+        width: calc(45%);
+    }
+
     #sign-up {
         float: left;
         width: calc(80% - 200px);
@@ -69,4 +93,5 @@
         float: right;
         width: calc(80% - 200px);
     }
+    
   }
