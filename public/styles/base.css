@@ -60,13 +60,13 @@
       width: calc(100% - 200px);
     }
   
-    #signup {
+    #sign-up {
         float: left;
-        width: calc(50% - 200px);
+        width: calc(80% - 200px);
     }
   
     #login {
         float: right;
-        width: calc(50% - 200px);
+        width: calc(80% - 200px);
     }
   }
