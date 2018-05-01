@@ -5,7 +5,7 @@
     const authView = {};
 
     authView.init = () => {
-        $('#admin-view').show();
+        $('#auth-view').show();
     };
 
     module.authView = authView;
