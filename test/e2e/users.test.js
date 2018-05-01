@@ -42,7 +42,7 @@ describe('User E2E API', () => {
             .post('/auth/signup')
             .send(user)
             .then(checkOk)
-            .then(( { body }) => {
+            .then(({ body }) => {
                 user._id = body._id;
                 assert.ok(body.role);
             });
