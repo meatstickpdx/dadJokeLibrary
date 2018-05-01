@@ -21,14 +21,24 @@
         <h1>Under Construction</h1>
 
         <p>:image-of-like-a-jackhammer-or-something:</p> 
-        <section id="auth-view"></section>   
-        <section id="game-view"></section>
-        <section id="results-view"></section>
-        <section id="admin-view"></section>
+        <section id="auth-view">
+            <form>
+                <label for="email" class="e-mail">E-mail:</label>
+                <input id="email" type="text">
+             
+                <label for="password" class="password">Password:</label>
+                <input id="password" type="text">
+             
+                <button id="login">Login</button>
+                <button id="sign-up">Sign-Up</button>
+            </form>
+        </section>   
+        <section id="game-view" class="view"></section>
+        <section id="results-view" class="view"></section>
+        <section id="admin-view" class="view"></section>
     </main>
     <!-- TEMPLATES -->
-    <script id="prompt-template" type="text/html"></script>
-    <script id="caption-template" type="text/html"></script>
+    <script id="joke-template" type="text/html"></script>
     <script id="error-template" type="text/x-handlebars-template">
         <h3>Oops, something went wrong!</h3>
         <p>{{status}}: {{statusText}}</p>
