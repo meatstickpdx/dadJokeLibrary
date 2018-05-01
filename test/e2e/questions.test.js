@@ -1,31 +1,64 @@
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
-// const Question = require('../../lib/models/Question');
-// const { Types } = require('mongoose');
+
 
 describe( 'Question API', () => {
+
+
     before(() => dropCollection('questions'));
+    before(() => dropCollection('answers'));
+    before(() => dropCollection('users'));
+
+    let token = '';
+
+    let punchline = {
+        content: 'It got mugged'
+    };
+
+    const joe = {
+        username: 'Joe',
+        password: 'abc',
+    };
 
     let dadJoke = {
+        answers: [],
         prompt: 'This is a dad question',
-        answers: ['dads are the best jokesters', 'dads tell horrible jokes'],
-        user: 75,
         status: 'submit'
     };
 
     let dadBod = {
         prompt: '{ dadBod }',
-        answers: ['code joke', 'other funny things'],
-        user: 12,
         status: 'submit'
     };
 
     before(() => {
+        return request.post('/auth/signup')
+            .send(joe)
+            .then(({ body }) => {
+                dadJoke.user = body._id;
+                dadBod.user = body._id;
+                token = body.token;
+
+            });
+    });
+    
+    before(() => {
         return request.post('/questions')
             .send(dadBod)
             .then(({ body }) => {
+                punchline.question = body._id;
                 dadBod = body;
+            });
+    });
+
+    before(() => {
+        return request.post('/answers')
+            .set('Authorization', token)
+            .send(punchline)
+            .then(({ body }) => {
+                dadBod.answers = [body._id];
+                punchline = body;
             });
     });
 
@@ -70,6 +103,21 @@ describe( 'Question API', () => {
             .send(dadBod)
             .then(({ body }) => {
                 assert.deepEqual(body, dadBod);
+            });
+    });
+
+    it('get question and its answers by id', () => {
+        const dadBodFields = getFields(dadBod);
+        
+        return request.get(`/questions/${dadBod._id}/answers`)
+            .then(({ body }) => {
+                assert.deepEqual(body, {
+                    ...dadBodFields,
+                    answers: [{
+                        content: punchline.content,
+                        _id: punchline._id
+                    }]
+                });
             });
     });
 

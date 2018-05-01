@@ -4,7 +4,7 @@ const Answer = require('../../lib/models/Answer');
 const User = require('../../lib/models/User');
 const { getErrors } = require('./helpers');
 
-describe.only('Question model', () => {
+describe('Question model', () => {
 
     const punchline = {
         content: 'It got mugged'
