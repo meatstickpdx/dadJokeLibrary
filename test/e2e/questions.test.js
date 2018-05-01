@@ -3,7 +3,7 @@ const request = require('./request');
 const { dropCollection } = require('./db');
 
 
-describe.only( 'Question API', () => {
+describe( 'Question API', () => {
 
 
     before(() => dropCollection('questions'));
@@ -54,7 +54,7 @@ describe.only( 'Question API', () => {
 
     before(() => {
         return request.post('/answers')
-            .set('Authorization', token)
+            .set('Token', token)
             .send(punchline)
             .then(({ body }) => {
                 dadBod.answers = [body._id];
