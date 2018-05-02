@@ -59,6 +59,7 @@ describe.only('Vote E2E API', () => {
                 assert.ok(user._id);
 
                 token = body.token;
+                console.log('TOKEN', token);
 
                 vote1.voter = user._id;
                 vote2.voter = user._id;
@@ -153,8 +154,8 @@ describe.only('Vote E2E API', () => {
             });
     });
 
-    it('gets all votes by user', () => {
-        return request.get(`/votes?user=${user._id}`)
+    it('gets all votes by current user', () => {
+        return request.get(`/votes/myVotes`)
             .set('Token', token)
             .then(checkOk)
             .then(({ body }) => {

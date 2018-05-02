@@ -30,7 +30,7 @@
         });
     };
 
-    gameView.vote = (id, question, emoji) => {
+    gameView.vote = (id, question, emoji, next) => {
         const vote = {
             emoji: emoji,
             question: question,
@@ -50,10 +50,11 @@
             .then(response => response.json())
             .then(res => {
                 console.log('res???', res);
-                // $('#answers-form').trigger('reset');
+                next();
             })
             .catch(err => {
                 console.log(err);
+                next();
             });
     };
 
@@ -94,9 +95,20 @@
             });
     };
 
-    const checkVotes = (id) => {
+    const checkVotes = (questionId) => {
+        const token = window.localStorage.getItem('token');
 
-        
+        fetch(`/votes/myVotes`, {
+            headers: {
+                'token' : token,
+            },
+            method: 'GET'
+        })
+            .then( response => response.json())
+            .then( ( votes ) =>
+                votes.forEach(vote => {
+                    $(`.${vote.answer}${vote.emoji}`).addClass('disabled');
+                }));
     };
    
     module.gameView = gameView;
