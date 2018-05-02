@@ -34,9 +34,8 @@ describe('Question model', () => {
 
     it('requires fields', () => {
         const question = new Question({});
-        const errors = getErrors(question.validateSync(), 2);
+        const errors = getErrors(question.validateSync(), 1);
         assert.equal(errors.prompt.kind, 'required');
-        assert.equal(errors.user.kind, 'required');
     });
 
     it('checks that status is an enum', () => {

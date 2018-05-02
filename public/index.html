@@ -27,7 +27,7 @@
                 <input id="email" type="text" required>
              
                 <label for="password" class="password">Password:</label>
-                <input id="password" type="text" required>
+                <input id="password" type="password" required>
              
                 <button id="login">Login</button>
                 <button id="sign-up">Sign-Up</button>
@@ -58,7 +58,7 @@
             <section id="question"></section>
             <section id="submit-answers">
                     <form id="answers-form">
-                        <label for="submitAnswer" class="submitAnswer">Submit a Punchline:</label>
+                        <label for="answer" class="answer">Submit a Punchline:</label>
                         <textarea id="answer" rows="4" required></textarea>
         
                         <div class="status hidden"></div>
@@ -73,14 +73,12 @@
 
     <!-- TEMPLATES -->
     <script id="answers-template" type="text/x-handlebars-template">
-        {{#each answer}}
         <section class="answer card">
-            <h3>{{answer}}</h3>
-            <a href="/vote/{{questionID}}/{{answerID}}/😂" class="laughing">😂</a>
-            <a href="/vote/{{questionID}}/{{answerID}}/🤦" class="facepalm">🤦</a>
-            <a href="/vote/{{questionID}}/{{answerID}}/💖" class="heart">💖</a>
+            <h3>{{content}}</h3>
+            <a href="/vote/{{question}}/{{_id}}/😂" class="laughing">😂</a>
+            <a href="/vote/{{question}}/{{_id}}/🤦" class="facepalm">🤦</a>
+            <a href="/vote/{{question}}/{{_id}}/💖" class="heart">💖</a>
         </section>
-        {{/each}}
     </script>
 
     <script id="error-template" type="text/x-handlebars-template">

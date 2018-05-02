@@ -21,7 +21,7 @@
     
     page('/game', () => gameView.init());
 
-    // page('/game/vote/:id', (ctx) => Joke.fetchOne(ctx.params.id, gameView.vote()));
+    page('/vote/:question/:id/:emoji', (ctx) => gameView.vote(ctx.params.id, ctx.params.question, ctx.params.emoji));
 
     page('/results', () => resultsView.init());
 
