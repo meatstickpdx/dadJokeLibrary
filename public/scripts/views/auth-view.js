@@ -28,6 +28,7 @@
             .then(response => response.json())
             .then(res => {
                 localStorage.token = res.token;
+                localStorage.user = res.username;
                 $('#login-form').trigger('reset');
                 $('#header-content').text(`Logged in as ${credentials.username}`);
                 page('/game');
