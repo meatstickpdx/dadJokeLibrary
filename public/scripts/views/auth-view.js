@@ -29,7 +29,7 @@
             .then(res => {
                 localStorage.token = res.token;
                 $('#login-form').trigger('reset');
-                page('/');
+                page('/game');
             })
             .catch(err => {
                 console.log(err);
@@ -54,7 +54,7 @@
             .then(res => {
                 localStorage.token = res.token;
                 $('#login-form').trigger('reset');
-                page('/');
+                page('/game');
             })
             .catch(err => {
                 console.log(err);

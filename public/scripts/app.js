@@ -7,7 +7,6 @@
     const resultsView = module.resultsView;
     const adminView = module.adminView;
 
-
     const resetView = () => {
         $('.view').hide();
     };
@@ -17,7 +16,7 @@
         next();
     });
 
-    page('/login', () => authView.init());
+    page('/', () => authView.init());
     
     page('/game', () => gameView.init());
 
