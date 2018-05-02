@@ -19,6 +19,17 @@
     padding-bottom: 5px;
   }
 
+  header ul{
+    list-style-type: none;
+  }
+
+  header li {
+    color: gray;
+    float: left;
+    margin-right: 1em;
+    font-size: .9em;
+  }
+
   form {
     padding: 1em;
     background: #f9f9f9;
