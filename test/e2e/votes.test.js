@@ -2,7 +2,7 @@ const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
 
-describe('Vote E2E API', () => {
+describe.only('Vote E2E API', () => {
 
     let token = null;
 
@@ -99,7 +99,6 @@ describe('Vote E2E API', () => {
 
     it('posts a vote', () => {
         return request.post('/votes')
-            .set('Authorization', 'admin')
             .set('Token', token)
             .send(vote1)
             .then(checkOk)
@@ -112,6 +111,16 @@ describe('Vote E2E API', () => {
                     ...vote1
                 });
                 vote1 = body;
+            });
+    });
+
+    it('cannot post a vote twice', () => {
+        return request.post('/votes')
+            .set('Token', token)
+            .send(vote1)
+            .then(checkOk)
+            .then( ({ text }) => {
+                assert.equal(text, 'Cannot vote twice');
             });
     });
 

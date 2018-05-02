@@ -95,8 +95,6 @@ describe('Answer E2E API', () => {
                 answer2 = body;
                 assert.ok(answer2._id);
                 return request.get(`/answers/${answer2._id}`)
-                    .set('Token', token)
-                    .set('Authorization', 'admin')
                     .then(({ body }) => {
                         assert.deepEqual(body, answer2);
                     });
@@ -105,11 +103,18 @@ describe('Answer E2E API', () => {
 
     it('gets all answers', () => {
         return request.get('/answers')
-            .set('Token', token)
-            .set('Authorization', 'admin')
             .then(checkOk)
             .then(({ body }) => {
                 assert.deepEqual(body, [answer1, answer2].map(getAllFields));
+            });
+    });
+
+    it('gets all answers by question ID', () => {
+        return request.get(`/answers/all?question=${question._id}`)
+            .then(checkOk)
+            .then(({ body }) => {
+                assert.deepEqual(body[0].content, answer1.content);
+                assert.deepEqual(body[1].content, answer2.content);
             });
     });
 
@@ -127,8 +132,6 @@ describe('Answer E2E API', () => {
 
     it('returns 404 on get of non-existent id', () => {
         return request.get(`/answers/${answer2._id}`)
-            .set('Token', token)
-            .set('Authorization', 'admin')
             .then(response => {
                 assert.equal(response.status, 404);
                 assert.match(response.body.error, new RegExp(answer2._id));

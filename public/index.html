@@ -26,7 +26,6 @@
 
         <p id="header-content">Please log in</p>
     </header>
-
     <main>
         <section id="auth-view" class="view">
             <form id="login-form">
@@ -34,7 +33,7 @@
                 <input id="email" type="text" required>
              
                 <label for="password" class="password">Password:</label>
-                <input id="password" type="text" required>
+                <input id="password" type="password" required>
              
                 <button id="login">Login</button>
                 <button id="sign-up">Sign-Up</button>
@@ -53,7 +52,7 @@
                 <input id="votingTime" type="number" min="0" max="60" required>
 
                 <div class="status hidden"></div>
-                <button id="submitQuestion" type="submit">Set</button>
+                <button id="submitTimes" type="submit">Set</button>
             </form>
         </section>
 
@@ -72,9 +71,8 @@
     
             <section id="submit-answers">
                 <form id="answers-form">
-                    <label for="submitAnswer" class="submitAnswer">Submit a Punchline:</label>
+                    <label for="answer" class="answer">Submit a Punchline:</label>
                     <textarea id="answer" rows="4" required></textarea>
-        
                     <div class="status hidden"></div>
                     <button id="submitAnswer" type="submit">Submit!</button>
                 </form>
@@ -90,14 +88,12 @@
 
     <!-- TEMPLATES -->
     <script id="answers-template" type="text/x-handlebars-template">
-        {{#each answer}}
         <section class="answer card">
-            <h3>{{answer}}</h3>
-            <a href="/vote/{{quesitonID}}/{{answerID}}/😂" class="laughing">😂</a>
-            <a href="/vote/{{quesitonID}}/{{answerID}}/🤦" class="facepalm">🤦</a>
-            <a href="/vote/{{quesitonID}}/{{answerID}}/💖" class="heart">💖</a>
+            <h3>{{content}}</h3>
+            <a href="/vote/{{question}}/{{_id}}/😂" class="laughing">😂</a>
+            <a href="/vote/{{question}}/{{_id}}/🤦" class="facepalm">🤦</a>
+            <a href="/vote/{{question}}/{{_id}}/💖" class="heart">💖</a>
         </section>
-        {{/each}}
     </script>
 
     <script id="error-template" type="text/x-handlebars-template">
@@ -107,9 +103,7 @@
 
 
     <!-- config -->
-    <script>    
-        //const API_URL = 'http://localhost:3000';
-        
+    <script>            
          window.location.protocol === 'https:'
          ? 'https://meatstick.herokuapp.com'
          : 'http://localhost:3000';
@@ -121,7 +115,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 
-        <!-- app scripts -->
+    <!-- app scripts -->
     <script src="scripts/views/admin-view.js"></script>
     <script src="scripts/views/auth-view.js"></script>
     <script src="scripts/views/game-view.js"></script>
