@@ -29,6 +29,7 @@
             .then(res => {
                 localStorage.token = res.token;
                 $('#login-form').trigger('reset');
+                $('#header-content').text(`Logged in as ${credentials.username}`);
                 page('/game');
             })
             .catch(err => {
@@ -54,6 +55,7 @@
             .then(res => {
                 localStorage.token = res.token;
                 $('#login-form').trigger('reset');
+                $('#header-content').text(`Logged in as ${credentials.username}`);
                 page('/game');
             })
             .catch(err => {
