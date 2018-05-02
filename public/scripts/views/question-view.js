@@ -31,7 +31,7 @@
     
         const token = window.localStorage.getItem('token');
 
-        fetch(`http://localhost:3000/questions`, {
+        fetch(`/questions`, {
             body: JSON.stringify(question),
             method: 'POST',
             mode: 'cors',
