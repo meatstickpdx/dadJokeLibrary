@@ -51,18 +51,18 @@
                         <input id="votingTime" type="number" min="0" max="60" required>
         
                         <div class="status hidden"></div>
-                        <button id="submitQuestion" type="submit">Set</button>
+                        <button id="submitTimes" type="submit">Set</button>
                 </form>
         </section>
         <section id="game-view" class="view">
             <section id="question"></section>
             <section id="submit-answers">
                     <form id="answers-form">
-                        <label for="submitAnswer" class="submitAnswer">Submit a Punchline:</label>
+                        <label for="answer" class="answer">Submit a Punchline:</label>
                         <textarea id="answer" rows="4" required></textarea>
         
                         <div class="status hidden"></div>
-                        <button id="answer" type="submit">Submit!</button>
+                        <button id="submitAnswer" type="submit">Submit!</button>
                     </form>
             </section>
             <section id="answers"></section>
@@ -73,14 +73,12 @@
 
     <!-- TEMPLATES -->
     <script id="answers-template" type="text/x-handlebars-template">
-        {{#each answer}}
         <section class="answer card">
-            <h3>{{answer}}</h3>
-            <a href="/vote/{{quesitonID}}/{{answerID}}/😂" class="laughing">😂</a>
-            <a href="/vote/{{quesitonID}}/{{answerID}}/🤦" class="facepalm">🤦</a>
-            <a href="/vote/{{quesitonID}}/{{answerID}}/💖" class="heart">💖</a>
+            <h3>{{content}}</h3>
+            <a href="/vote/{{questionID}}/{{answerID}}/😂" class="laughing">😂</a>
+            <a href="/vote/{{questionID}}/{{answerID}}/🤦" class="facepalm">🤦</a>
+            <a href="/vote/{{questionID}}/{{answerID}}/💖" class="heart">💖</a>
         </section>
-        {{/each}}
     </script>
 
     <script id="error-template" type="text/x-handlebars-template">

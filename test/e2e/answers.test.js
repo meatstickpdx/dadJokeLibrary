@@ -3,7 +3,7 @@ const request = require('./request');
 const { dropCollection } = require('./db');
 const Answer = require('../../lib/models/Answer');
 
-describe('Answer E2E API', () => {
+describe.only('Answer E2E API', () => {
 
     let token = null;
 
@@ -110,10 +110,11 @@ describe('Answer E2E API', () => {
     });
 
     it('gets all answers by question ID', () => {
-        return request.get(`/answers/all?=${question._id}`)
+        return request.get(`/answers/all?question=${question._id}`)
             .then(checkOk)
             .then(({ body }) => {
-                assert.deepEqual(body, [answer1, answer2].map(getAllFields));
+                assert.deepEqual(body[0].content, answer1.content);
+                assert.deepEqual(body[1].content, answer2.content);
             });
     });
 
