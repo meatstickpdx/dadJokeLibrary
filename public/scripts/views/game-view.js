@@ -59,8 +59,7 @@
         })
             .then(response => response.json())
             .then(res => {
-                console.log('res???', res);
-                // $('#answers-form').trigger('reset');
+                $('#answers-form').trigger('reset');
             })
             .catch(err => {
                 console.log(err);
