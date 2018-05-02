@@ -9,6 +9,9 @@
 
     const resetView = () => {
         $('.view').hide();
+        if(localStorage.user) {
+            $('#header-content').text(`Logged in as ${localStorage.user}`);
+        }
     };
 
     page('*', (ctx, next) => {
@@ -25,6 +28,11 @@
     page('/results', () => resultsView.init());
 
     page('/admin', () => adminView.init());
+
+    page('/logout', () => {
+        localStorage.clear();
+        authView.init();
+    });
 
     // page('*', () => page.redirect('/login'));
 
