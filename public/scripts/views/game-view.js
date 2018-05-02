@@ -37,6 +37,34 @@
         $('#question').append(`<h2>${gameView.currentQuestion.prompt}</h2>`);
     };
 
+    gameView.vote = (id, question, emoji) => {
+        const vote = {
+            emoji: emoji,
+            question: question,
+            answer: id
+        };
+        console.log('VOTE!!!', vote);
+        const token = window.localStorage.getItem('token');
+
+        fetch(`/votes`, {
+            body: JSON.stringify(vote),
+            headers: {
+                'token' : token,
+                'content-type': 'application/json'
+            },
+            method: 'POST',
+            mode: 'cors'
+        })
+            .then(response => response.json())
+            .then(res => {
+                console.log('res???', res);
+                // $('#answers-form').trigger('reset');
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
+
     gameView.questionError = () => {
         $('#question').append('<h2>Please set a question on the Admin Page</h2>');
     };
