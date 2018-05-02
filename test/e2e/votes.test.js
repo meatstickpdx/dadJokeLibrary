@@ -21,11 +21,11 @@ describe('Vote E2E API', () => {
     };
 
     let vote1 = {
-        emoji: ':heart:'
+        emoji: '💖'
     };
 
     let vote2 = {
-        emoji: ':facepalm:'
+        emoji: '🤦'
     };
 
     before(() => dropCollection('users'));
@@ -145,7 +145,7 @@ describe('Vote E2E API', () => {
     });
 
     it('updates a vote', () => {
-        vote2.emoji = ':laughing:';
+        vote2.emoji = '😂';
 
         return request.put(`/votes/${vote2._id}`)
             .set('Authorization', 'admin')
