@@ -6,6 +6,7 @@
     const gameView = module.gameView;
     const resultsView = module.resultsView;
     const adminView = module.adminView;
+    const questionView = module.questionView;
 
     const resetView = () => {
         $('.view').hide();
@@ -26,6 +27,8 @@
     // page('/game/vote/:id', (ctx) => Joke.fetchOne(ctx.params.id, gameView.vote()));
 
     page('/results', () => resultsView.init());
+
+    page('/questions', () => questionView.init());
 
     page('/admin', () => adminView.init());
 

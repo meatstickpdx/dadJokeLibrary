@@ -17,6 +17,7 @@
     <header>
         <ul>
             <li><a href="/admin">Admin</a></li>
+            <li><a href="/questions">Submit a Question</a></li>
             <li><a href="/game">Game</a></li>
             <li><a href="/results">Results</a></li>
             <li><a href="/">Log in</a></li>
@@ -25,6 +26,7 @@
 
         <p id="header-content">Please log in</p>
     </header>
+
     <main>
         <section id="auth-view" class="view">
             <form id="login-form">
@@ -41,38 +43,48 @@
         </section>   
         
         <section id="admin-view" class="view">
-                <form id="question-form">
-                        <label for="setQuestion" class="setQuestion">Set Question:</label>
-                        <textarea id="setQuestion" rows="4" required></textarea>
-        
-                        <div class="status hidden"></div>
-                        <button id="submitQuestion" type="submit">Set</button>
-                </form>
-                <form id="game-time-form">
-                        <label for="submissionTime" class="submissionTime">Submission Timer (mins):</label>
-                        <input id="submissionTime" type="number" min="0" max="60" required>
-        
-                        <label for="votingTime" class="votingTime">Voting Timer (mins):</label>
-                        <input id="votingTime" type="number" min="0" max="60" required>
-        
-                        <div class="status hidden"></div>
-                        <button id="submitQuestion" type="submit">Set</button>
-                </form>
+            <select id="question-list"></select>
+
+            <form id="game-time-form">
+                <label for="submissionTime" class="submissionTime">Submission Timer (mins):</label>
+                <input id="submissionTime" type="number" min="0" max="60" required>
+
+                <label for="votingTime" class="votingTime">Voting Timer (mins):</label>
+                <input id="votingTime" type="number" min="0" max="60" required>
+
+                <div class="status hidden"></div>
+                <button id="submitQuestion" type="submit">Set</button>
+            </form>
         </section>
+
+        <section id="question-view" class="view">
+            <form id="question-form">
+                <label for="setQuestion" class="setQuestion">Submit a  Question:</label>
+                <textarea id="setQuestion" rows="4" required></textarea>
+
+                <div class="status hidden"></div>
+                <button id="submitQuestion" type="submit">Set</button>
+            </form>
+        </section>
+
         <section id="game-view" class="view">
             <section id="question"></section>
+    
             <section id="submit-answers">
-                    <form id="answers-form">
-                        <label for="submitAnswer" class="submitAnswer">Submit a Punchline:</label>
-                        <textarea id="answer" rows="4" required></textarea>
+                <form id="answers-form">
+                    <label for="submitAnswer" class="submitAnswer">Submit a Punchline:</label>
+                    <textarea id="answer" rows="4" required></textarea>
         
-                        <div class="status hidden"></div>
-                        <button id="submitAnswer" type="submit">Submit!</button>
-                    </form>
+                    <div class="status hidden"></div>
+                    <button id="submitAnswer" type="submit">Submit!</button>
+                </form>
             </section>
+
             <section id="answers"></section>
         </section>
+
         <section id="results-view" class="view"></section>
+
         <section id="error-view" class="view"></section>
     </main>
 
@@ -113,6 +125,7 @@
     <script src="scripts/views/admin-view.js"></script>
     <script src="scripts/views/auth-view.js"></script>
     <script src="scripts/views/game-view.js"></script>
+    <script src="scripts/views/question-view.js"></script>
     <script src="scripts/views/results-view.js"></script>
     <script src="scripts/app.js"></script>
 </body>

@@ -6,21 +6,39 @@
     const errorView = module.errorView;
     const handleError = err => errorView.init(err);
 
-    adminView.init = () => {
-        $('#admin-view').show();
+    adminView.populateQuestions = () => {
+        const token = window.localStorage.getItem('token');
 
-        $('#question-form')
-            .off('submit')
-            .on('submit', event => {
-                event.preventDefault();
-        
-                const data = {
-                    setQuestion: $('textarea[id=setQuestion]').val(),
-                };
-
-                console.log('Question set to:', data.setQuestion);
-                adminView.sendQuestion(data);
+        fetch(`http://localhost:3000/questions`, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'token' : token,
+                'content-type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(res => {
+                res.forEach(question => {
+                    $('#question-list').append(
+                        $(`<option>`, {
+                            value: question.prompt,
+                            text: `${question.prompt}`
+                        })
+                    );
+                });
+            })
+            .catch(err => {
+                console.log(err);
             });
+    };
+
+    adminView.init = () => {
+        $('#question-list').empty();
+
+        adminView.populateQuestions();
+
+        $('#admin-view').show();
 
         $('#game-time-form')
             .off('submit')
@@ -34,33 +52,6 @@
                 console.log('Submission timer set to:', data.submissionTime);
                 console.log('Voting timer set to:', data.votingTime);
             });
-    };
-
-    adminView.sendQuestion = (data) => {
-
-        const question = {
-            prompt: data.setQuestion,
-        };
-    
-        const token = window.localStorage.getItem('token');
-
-        fetch(`http://localhost:3000/questions`, {
-            body: JSON.stringify(question),
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'token' : token,
-                'content-type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(res => {
-                console.log('RESPONSE', res);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-
     };
 
     module.adminView = adminView;
