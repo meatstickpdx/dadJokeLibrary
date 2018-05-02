@@ -10,7 +10,7 @@ Dadjoke is a simple game for people who appreciate jokes and enjoy mad-lib or fi
 If you would like to play or improve upon this game, feel free.  This project includes all the files you will need, including a package.json.  In your terminal, enter npm i to install the dev dependencies you will need locally. You're ready to go!   
 1. Fork our repo (https://github.com/meatstickpdx/meatstick).
 2. Create your feature branch (git checkout -b branchname).
-3. Commit your changes (git commit -m 'add some changes').
+3. Commit your changes (git commit -m "add some changes").
 4. Push to the branch (git push origin branch).
 5. Create a new Pull Request.
 
