@@ -153,6 +153,15 @@ describe.only('Vote E2E API', () => {
             });
     });
 
+    it('gets all votes by user', () => {
+        return request.get(`/votes?user=${user._id}`)
+            .set('Token', token)
+            .then(checkOk)
+            .then(({ body }) => {
+                assert.deepEqual(body, [vote1, vote2]);
+            });
+    });
+
     it('updates a vote', () => {
         vote2.emoji = '😂';
 

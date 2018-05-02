@@ -1,6 +1,30 @@
 * {
     box-sizing: border-box;
   }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+  }
+  
+  h1, h2 {
+    font-family: 'Abril Fatface', cursive;
+  }
+
+  h1 {
+    margin-bottom: 0px;
+    display: inline;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  h3 {
+    margin: .5em;
+    position: relative;
+  }
   
   .hidden {
       display: none;
@@ -9,6 +33,16 @@
   header {
     border-bottom: 1px solid lightgray;
     text-align: right;
+  }
+
+  header a, header a:visited{
+    text-transform: lowercase;
+    text-decoration: none;
+    color: black;
+  }
+
+  header a:hover, header a:active{
+    color: #92efcf;
   }
 
   header p {
@@ -39,6 +73,7 @@
     margin-left: auto;
     margin-right: auto;
     padding: 1em;
+    border-radius: 5px;
   }
 
   form input {
@@ -48,7 +83,7 @@
   }
 
   form button {
-    background: lightgrey;
+    background: #ffe5e5;
     padding: 0.7em;
     border: 0;
   }
@@ -84,9 +119,55 @@
     outline: 3px solid gold;
   }
 
+  .emoji{
+    position: absolute;
+    right: calc(15%);
+    font-size: 1.5em;
+  }
+
+  .emoji a{
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .emoji a:hover{
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: rgba(255, 238, 0, 0.712);
+    }
+
+  .emoji .disabled{
+    color: transparent;  
+    /* text-shadow: 0 0 0 red; */
+    -webkit-text-stroke-color: rgb(158, 158, 158);
+    cursor: not-allowed;
+  }
+
+  .vote {
+    padding: 5px;
+  }
+
   .status {
       height: 2em;
       width: calc(50% - 10px);
+  }
+
+  .card {
+    padding: .8em;
+    background: #f9f9f9;
+    border: 1px solid #c1c1c1;
+    margin-top: 2rem;
+    max-width: calc(80% - 100px);
+    min-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    transition: 0.3s;
+    border-radius: 5px;
+  }
+
+  .card:hover {
+    border: 1px solid gold;
+    background: #ffe5e5;
   }
   
   @media (min-width: 400px) {

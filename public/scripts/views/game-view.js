@@ -3,8 +3,6 @@
 (function (module) {
 
     const gameView = {};
-    const errorView = module.errorView;
-    const handleError = err => errorView.init(err);
     const answerTemplate = Handlebars.compile($('#answers-template').html());
 
     gameView.currentQuestion = {};
@@ -13,9 +11,10 @@
         $('#game-view').show();
 
         $('#question').empty();
+        $('#answers').empty();
 
         $.get( '/questions', ( questions ) => {
-            questions.length ? gameView.loadQuestion(questions) : gameView.questionError();
+            questions.length ? loadQuestion(questions) : questionError();
         }).then( () => gameView.loadAnswers() );
 
         $('#submitAnswer').off('click').on('click', handleAnswer);
@@ -23,18 +22,12 @@
     
     gameView.loadAnswers = () => {
         $.get( `/answers/all?question=${gameView.currentQuestion._id}`, ( answers ) => {
-            console.log('answers', answers);
             answers.forEach(answer => {
-                console.log('answer', answer);
                 const answerCard = answerTemplate(answer);
                 $('#answers').append(answerCard);
+                checkVotes(gameView.currentQuestion._id);
             });
         });
-    };
-
-    gameView.loadQuestion = (questions) => {
-        gameView.currentQuestion = questions[questions.length - 1];
-        $('#question').append(`<h2>${gameView.currentQuestion.prompt}</h2>`);
     };
 
     gameView.vote = (id, question, emoji) => {
@@ -43,7 +36,6 @@
             question: question,
             answer: id
         };
-        console.log('VOTE!!!', vote);
         const token = window.localStorage.getItem('token');
 
         fetch(`/votes`, {
@@ -65,7 +57,12 @@
             });
     };
 
-    gameView.questionError = () => {
+    const loadQuestion = (questions) => {
+        gameView.currentQuestion = questions[questions.length - 1];
+        $('#question').append(`<h2>${gameView.currentQuestion.prompt}</h2>`);
+    };
+
+    const questionError = () => {
         $('#question').append('<h2>Please set a question on the Admin Page</h2>');
     };
 
@@ -89,11 +86,17 @@
             .then(response => response.json())
             .then(res => {
                 console.log('res???', res);
+                location.reload();
                 $('#answers-form').trigger('reset');
             })
             .catch(err => {
                 console.log(err);
             });
+    };
+
+    const checkVotes = (id) => {
+
+        
     };
    
     module.gameView = gameView;
