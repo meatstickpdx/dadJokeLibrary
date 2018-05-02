@@ -33,10 +33,27 @@
             });
     };
 
+    adminView.initializeQuestionSelection = () => {
+        $('#question-list')
+            .off('change')
+            .on('change', event => {
+                event.preventDefault();
+        
+                const data = {
+                    setQuestion: $('#question-list').val(),
+                };
+
+                console.log('Question set to:', data.setQuestion);
+
+                // adminView.sendQuestion(data);
+            });
+    };
+
     adminView.init = () => {
         $('#question-list').empty();
 
         adminView.populateQuestions();
+        adminView.initializeQuestionSelection();
 
         $('#admin-view').show();
 
