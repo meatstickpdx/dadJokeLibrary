@@ -14,6 +14,8 @@
 
         $('#question').empty();
 
+        $('#answers').empty();
+
         $.get( '/questions', ( questions ) => {
             questions.length ? gameView.loadQuestion(questions) : gameView.questionError();
         }).then( () => gameView.loadAnswers() );
