@@ -8,7 +8,7 @@ describe('Vote model', () => {
 
     it('valid good model', () => {
         const data = {
-            emoji: ':facepalm:',
+            emoji: '🤦',
             voter:  Types.ObjectId(), //eslint-disable-line
             question:  Types.ObjectId(), //eslint-disable-line
             answer:  Types.ObjectId(), //eslint-disable-line

@@ -24,26 +24,71 @@
         <section id="auth-view" class="view">
             <form id="login-form">
                 <label for="email" class="e-mail">E-mail:</label>
-                <input id="email" type="text">
+                <input id="email" type="text" required>
              
                 <label for="password" class="password">Password:</label>
-                <input id="password" type="text">
+                <input id="password" type="text" required>
              
-                <button id="login" type="submit">Login</button>
-                <button id="sign-up" type="submit">Sign-Up</button>
+                <button id="login">Login</button>
+                <button id="sign-up">Sign-Up</button>
+                <div class="status hidden"></div>
             </form>
         </section>   
-
-        <section id="game-view" class="view"></section>
+        
+        <section id="admin-view" class="view">
+                <form id="question-form">
+                        <label for="setQuestion" class="setQuestion">Set Question:</label>
+                        <textarea id="setQuestion" rows="4" required></textarea>
+        
+                        <div class="status hidden"></div>
+                        <button id="submitQuestion" type="submit">Set</button>
+                </form>
+                <form id="game-time-form">
+                        <label for="submissionTime" class="submissionTime">Submission Timer (mins):</label>
+                        <input id="submissionTime" type="number" min="0" max="60" required>
+        
+                        <label for="votingTime" class="votingTime">Voting Timer (mins):</label>
+                        <input id="votingTime" type="number" min="0" max="60" required>
+        
+                        <div class="status hidden"></div>
+                        <button id="submitQuestion" type="submit">Set</button>
+                </form>
+        </section>
+        <section id="game-view" class="view">
+            <section id="question"></section>
+            <section id="submit-answers">
+                    <form id="answers-form">
+                        <label for="submitAnswer" class="submitAnswer">Submit a Punchline:</label>
+                        <textarea id="answer" rows="4" required></textarea>
+        
+                        <div class="status hidden"></div>
+                        <button id="submitAnswer" type="submit">Submit!</button>
+                    </form>
+            </section>
+            <section id="answers"></section>
+        </section>
         <section id="results-view" class="view"></section>
-        <section id="admin-view" class="view"></section>
+        <section id="error-view" class="view"></section>
     </main>
+
     <!-- TEMPLATES -->
-    <script id="joke-template" type="text/html"></script>
+    <script id="answers-template" type="text/x-handlebars-template">
+        {{#each answer}}
+        <section class="answer card">
+            <h3>{{answer}}</h3>
+            <a href="/vote/{{quesitonID}}/{{answerID}}/😂" class="laughing">😂</a>
+            <a href="/vote/{{quesitonID}}/{{answerID}}/🤦" class="facepalm">🤦</a>
+            <a href="/vote/{{quesitonID}}/{{answerID}}/💖" class="heart">💖</a>
+        </section>
+        {{/each}}
+    </script>
+
     <script id="error-template" type="text/x-handlebars-template">
         <h3>Oops, something went wrong!</h3>
         <p>{{status}}: {{statusText}}</p>
     </script>
+
+
     <!-- config -->
     <script>    
         const API_URL = 'http://localhost:3000';

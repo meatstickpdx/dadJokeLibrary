@@ -2,7 +2,6 @@
 
 (function(module) {
 
-    const Joke = module.Joke;
     const authView = module.authView;
     const gameView = module.gameView;
     const resultsView = module.resultsView;
@@ -20,15 +19,15 @@
 
     page('/login', () => authView.init());
     
-    // page('/game', () => gameView.init());
+    page('/game', () => gameView.init());
 
     // page('/game/vote/:id', (ctx) => Joke.fetchOne(ctx.params.id, gameView.vote()));
 
-    // page('/results', () => resultsView.init());
+    page('/results', () => resultsView.init());
 
-    // page('/admin', () => adminView.init());
+    page('/admin', () => adminView.init());
 
-    page('*', () => page.redirect('/login'));
+    // page('*', () => page.redirect('/login'));
 
     page({ hashbang: true });
 
