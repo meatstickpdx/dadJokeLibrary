@@ -13,6 +13,7 @@
         $('#game-view').show();
 
         $('#question').empty();
+        $('#answers').empty();
 
         $.get( '/questions', ( questions ) => {
             questions.length ? gameView.loadQuestion(questions) : gameView.questionError();
@@ -25,7 +26,6 @@
         $.get( `/answers/all?question=${gameView.currentQuestion._id}`, ( answers ) => {
             console.log('answers', answers);
             answers.forEach(answer => {
-                console.log('answer', answer);
                 const answerCard = answerTemplate(answer);
                 $('#answers').append(answerCard);
             });
@@ -43,7 +43,6 @@
             question: question,
             answer: id
         };
-        console.log('VOTE!!!', vote);
         const token = window.localStorage.getItem('token');
 
         fetch(`/votes`, {
@@ -57,6 +56,7 @@
         })
             .then(response => response.json())
             .then(res => {
+                console.log('RES', res);
                 $('#answers-form').trigger('reset');
             })
             .catch(err => {
