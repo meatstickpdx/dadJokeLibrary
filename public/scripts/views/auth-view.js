@@ -28,8 +28,9 @@
             .then(response => response.json())
             .then(res => {
                 localStorage.token = res.token;
+                localStorage.user = res.username;
                 $('#login-form').trigger('reset');
-                page('/');
+                page('/game');
             })
             .catch(err => {
                 console.log(err);
@@ -53,8 +54,9 @@
             .then(response => response.json())
             .then(res => {
                 localStorage.token = res.token;
+                localStorage.user = res.username;
                 $('#login-form').trigger('reset');
-                page('/');
+                page('/game');
             })
             .catch(err => {
                 console.log(err);

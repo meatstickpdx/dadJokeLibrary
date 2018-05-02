@@ -6,10 +6,13 @@
     const gameView = module.gameView;
     const resultsView = module.resultsView;
     const adminView = module.adminView;
-
+    const questionView = module.questionView;
 
     const resetView = () => {
         $('.view').hide();
+        if(localStorage.user) {
+            $('#header-content').text(`Logged in as ${localStorage.user}`);
+        }
     };
 
     page('*', (ctx, next) => {
@@ -17,7 +20,7 @@
         next();
     });
 
-    page('/login', () => authView.init());
+    page('/', () => authView.init());
     
     page('/game', () => gameView.init());
 
@@ -25,7 +28,14 @@
 
     page('/results', () => resultsView.init());
 
+    page('/questions', () => questionView.init());
+
     page('/admin', () => adminView.init());
+
+    page('/logout', () => {
+        localStorage.clear();
+        authView.init();
+    });
 
     // page('*', () => page.redirect('/login'));
 

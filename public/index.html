@@ -15,12 +15,18 @@
 </head>
 <body>
     <header>
-        <h1>Logged in as (username)</h1>
+        <ul>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/questions">Submit a joke prompt</a></li>
+            <li><a href="/game">Game</a></li>
+            <li><a href="/results">Results</a></li>
+            <li><a href="/">Log in</a></li>
+            <li><a href="/logout">Log out</a></li>
+        </ul>
+
+        <p id="header-content">Please log in</p>
     </header>
     <main>
-        <h2>Under Construction</h2>
-
-        <p>:image-of-like-a-jackhammer-or-something:</p> 
         <section id="auth-view" class="view">
             <form id="login-form">
                 <label for="email" class="e-mail">E-mail:</label>
@@ -36,38 +42,47 @@
         </section>   
         
         <section id="admin-view" class="view">
-                <form id="question-form">
-                        <label for="setQuestion" class="setQuestion">Set Question:</label>
-                        <textarea id="setQuestion" rows="4" required></textarea>
-        
-                        <div class="status hidden"></div>
-                        <button id="submitQuestion" type="submit">Set</button>
-                </form>
-                <form id="game-time-form">
-                        <label for="submissionTime" class="submissionTime">Submission Timer (mins):</label>
-                        <input id="submissionTime" type="number" min="0" max="60" required>
-        
-                        <label for="votingTime" class="votingTime">Voting Timer (mins):</label>
-                        <input id="votingTime" type="number" min="0" max="60" required>
-        
-                        <div class="status hidden"></div>
-                        <button id="submitTimes" type="submit">Set</button>
-                </form>
+            <select id="question-list"></select>
+
+            <form id="game-time-form">
+                <label for="submissionTime" class="submissionTime">Submission Timer (mins):</label>
+                <input id="submissionTime" type="number" min="0" max="60" required>
+
+                <label for="votingTime" class="votingTime">Voting Timer (mins):</label>
+                <input id="votingTime" type="number" min="0" max="60" required>
+
+                <div class="status hidden"></div>
+                <button id="submitTimes" type="submit">Set</button>
+            </form>
         </section>
+
+        <section id="question-view" class="view">
+            <form id="question-form">
+                <label for="setQuestion" class="setQuestion">Submit a joke prompt:</label>
+                <textarea id="setQuestion" rows="4" required></textarea>
+
+                <div class="status hidden"></div>
+                <button id="submitQuestion" type="submit">Set</button>
+            </form>
+        </section>
+
         <section id="game-view" class="view">
             <section id="question"></section>
+    
             <section id="submit-answers">
-                    <form id="answers-form">
-                        <label for="answer" class="answer">Submit a Punchline:</label>
-                        <textarea id="answer" rows="4" required></textarea>
-        
-                        <div class="status hidden"></div>
-                        <button id="submitAnswer" type="submit">Submit!</button>
-                    </form>
+                <form id="answers-form">
+                    <label for="answer" class="answer">Submit a Punchline:</label>
+                    <textarea id="answer" rows="4" required></textarea>
+                    <div class="status hidden"></div>
+                    <button id="submitAnswer" type="submit">Submit!</button>
+                </form>
             </section>
+
             <section id="answers"></section>
         </section>
+
         <section id="results-view" class="view"></section>
+
         <section id="error-view" class="view"></section>
     </main>
 
@@ -88,12 +103,10 @@
 
 
     <!-- config -->
-    <script>    
-        const API_URL = 'http://localhost:3000';
-        
-        // window.location.protocol === 'https:'
-        // ? 'https://bc2-booklist.herokuapp.com'
-        // : 'http://localhost:3000';
+    <script>            
+         window.location.protocol === 'https:'
+         ? 'https://meatstick.herokuapp.com'
+         : 'http://localhost:3000';
     
         window.module = {};
     </script>
@@ -106,6 +119,7 @@
     <script src="scripts/views/admin-view.js"></script>
     <script src="scripts/views/auth-view.js"></script>
     <script src="scripts/views/game-view.js"></script>
+    <script src="scripts/views/question-view.js"></script>
     <script src="scripts/views/results-view.js"></script>
     <script src="scripts/app.js"></script>
 </body>

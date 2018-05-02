@@ -6,6 +6,30 @@
       display: none;
   }
 
+  header {
+    border-bottom: 1px solid lightgray;
+    text-align: right;
+  }
+
+  header p {
+    color: gray;
+    display: block;
+    font-size: .9em;
+    margin: 0;
+    padding-bottom: 5px;
+  }
+
+  header ul{
+    list-style-type: none;
+  }
+
+  header li {
+    color: gray;
+    float: left;
+    margin-right: 1em;
+    font-size: .9em;
+  }
+
   form {
     padding: 1em;
     background: #f9f9f9;
