@@ -5,6 +5,7 @@ const { dropCollection } = require('./db');
 describe('User E2E API', () => {
 
     let token = null;
+    let userToken = null;
 
     const checkOk = res => {
         if(!res.ok) throw res.error;
@@ -45,6 +46,7 @@ describe('User E2E API', () => {
             .then(({ body }) => {
                 user._id = body._id;
                 assert.ok(body.role);
+                userToken = body.token;
             });
     });
 
@@ -61,6 +63,7 @@ describe('User E2E API', () => {
 
     it('Blocks non-admins from retrieving users', () => {
         return request.get('/users')
+            .set('Token', userToken)
             .then(( { body }) => {
                 assert.deepEqual(body.error, 'Requires admin role');
             });
