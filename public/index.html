@@ -84,9 +84,8 @@
             <section id="answers"></section>
         </section>
 
-        <section id="results-view" class="view"></section>
     </main>
-
+    
     <!-- TEMPLATES -->
     <script id="answers-template" type="text/x-handlebars-template">
         <section class="answer card">
@@ -98,6 +97,18 @@
             </section>
         </section>
     </script>
+    
+    <script id="results-template" type="text/x-handlebars-template">
+        <section class="results-view">
+            <h3>{{content}}</h3>
+            <section class ="emoji">
+                <a href="😂">😂 Count</a> 
+                <a href="🤦">🤦 Count</a>
+                <a href="💖">💖 Count</a>
+            </section>
+        </section>
+    </script>
+
 
     <script id="error-template" type="text/x-handlebars-template">
         <h3>Oops, something went wrong!</h3>
