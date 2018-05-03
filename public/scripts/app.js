@@ -11,7 +11,7 @@
     const resetView = () => {
         $('.view').hide();
         if(localStorage.user) {
-            $('#header-content').text(`Logged in as ${localStorage.user}`);
+            $('#header-content').text(`Logged in as Mr. ${localStorage.user}`);
         }
     };
 
