@@ -11,7 +11,7 @@
     const resetView = () => {
         $('.view').hide();
         if(localStorage.user) {
-            $('#header-content').text(`Logged in as Mr. ${localStorage.user}`);
+            $('#header-content').text(`Logged in as ${localStorage.user}`);
         }
     };
 
@@ -34,7 +34,7 @@
 
     page('/logout', () => {
         localStorage.clear();
-        authView.init();
+        page.redirect('/');
     });
 
     page('*', () => page.redirect('/'));
