@@ -3,13 +3,14 @@ const request = require('./request');
 const { dropCollection } = require('./db');
 const Answer = require('../../lib/models/Answer');
 
-describe('Answer E2E API', () => {
+describe.only('Answer E2E API', () => {
 
     let token = null;
 
     const user = {
         username: 'Mr. Jones',
-        password: 'abc'
+        password: 'abc',
+        role: 'admin'
     };
 
     let answer1 = {
@@ -17,7 +18,7 @@ describe('Answer E2E API', () => {
     };
 
     let answer2 = {
-        content: 'Because its a stupid chicken',
+        content: `Because it's a stupid chicken`,
     };
 
     const question = {
@@ -69,6 +70,15 @@ describe('Answer E2E API', () => {
             });
     });
 
+    before(() => {
+        return request.post('/answers')
+            .set('Token', token)
+            .send(answer2)
+            .then(({ body }) => {
+                answer2._id = body._id;
+            });
+    });
+
     it('saves an answer', () => {
         return request.post('/answers')
             .set('Token', token)
@@ -86,26 +96,11 @@ describe('Answer E2E API', () => {
             });
     });
 
-    it('gets an answer by id', () => {
-        return request.post('/answers')
-            .set('Token', token)
-            .send(answer2)
-            .then(checkOk)
-            .then(({ body }) => {
-                answer2 = body;
-                assert.ok(answer2._id);
-                return request.get(`/answers/${answer2._id}`)
-                    .then(({ body }) => {
-                        assert.deepEqual(body, answer2);
-                    });
-            });
-    });
-
     it('gets all answers', () => {
         return request.get('/answers')
             .then(checkOk)
             .then(({ body }) => {
-                assert.deepEqual(body, [answer1, answer2].map(getAllFields));
+                assert.deepEqual(body, [answer2, answer1].map(getAllFields));
             });
     });
 
@@ -113,8 +108,15 @@ describe('Answer E2E API', () => {
         return request.get(`/answers/all?question=${question._id}`)
             .then(checkOk)
             .then(({ body }) => {
-                assert.deepEqual(body[0].content, answer1.content);
-                assert.deepEqual(body[1].content, answer2.content);
+                assert.deepEqual(body[0].content, answer2.content);
+                assert.deepEqual(body[1].content, answer1.content);
+            });
+    });
+
+    it('gets an answer by id', () => {
+        return request.get(`/answers/${answer2._id}`)
+            .then(({ body }) => {
+                assert.deepEqual(body._id, answer2._id);
             });
     });
 
