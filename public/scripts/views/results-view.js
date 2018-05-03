@@ -46,7 +46,6 @@
         });
 
         const laughArray = resultsArray.filter(vote => vote._id.emoji === '😂');
-        console.log(laughArray);
         laughArray.forEach( laughing=> {
             const card = resultsTemplate(laughing);
             $('#laughing').append(card);
