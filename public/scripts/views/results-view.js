@@ -5,16 +5,10 @@
     const resultsView = {};
     const resultsTemplate = Handlebars.compile($(`#results-template`).html());
 
-    resultsView.init = (questionId) => {
-        $('#results-view').show();
-        const data = {
-            question: questionId
-        };
+    resultsView.init = () => {
         const token = window.localStorage.getItem('token');
-        console.log('DATA', data);
-
-        fetch(`/votes/results`, {
-            body: JSON.stringify(data),
+        
+        fetch(`/questions/voting`, {
             headers: {
                 'token' : token,
                 'content-type': 'application/json'
@@ -22,18 +16,26 @@
             method: 'GET',
             mode: 'cors'
         })
-            .then(response => response.json())
+            .then(res => res.json())
             .then(res => {
-                console.log('RES', res);
-                // $('#answers-form').trigger('reset');
-                // next();
-            })
-            .catch(err => {
-                console.log(err);
-                // next();
+                console.log('res id', res._id);
+                fetch(`/votes/results?question=${res._id}`, {
+                    headers: {
+                        'token' : token,
+                        'content-type': 'application/json'
+                    },
+                    method: 'GET',
+                    mode: 'cors'
+                })
+                    .then(response => response.json())
+                    .then(res => {
+                        console.log('RES', res);
+                        $('#results-view').show();
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
             });
-
-
     };
 
     module.resultsView = resultsView;

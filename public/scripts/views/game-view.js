@@ -5,7 +5,7 @@
     const gameView = {};
     const answerTemplate = Handlebars.compile($('#answers-template').html());
 
-    gameView.currentQuestion = {};
+    gameView.currentQuestion = null;
 
     gameView.init = () => {
         $('#game-view').show();
@@ -26,21 +26,15 @@
             mode: 'cors'
         })
             .then(res => res.json())
-            .then(res => loadQuestion(res));
+            .then(res => {
+                loadQuestion(res);
+                loadAnswers();
+            });
 
         $('#submitAnswer').off('click').on('click', handleAnswer);
     };
     
-    gameView.loadAnswers = () => {
-        $.get( `/answers/all?question=${gameView.currentQuestion._id}`, ( answers ) => {
-            answers.forEach(answer => {
-                const answerCard = answerTemplate(answer);
-                $('#answers').append(answerCard);
-                checkVotes(gameView.currentQuestion._id);
-            });
-        });
-    };
-
+    
     gameView.vote = (id, question, emoji, next) => {
         const vote = {
             emoji: emoji,
@@ -49,7 +43,7 @@
             voter: null
         };
         const token = window.localStorage.getItem('token');
-
+        
         fetch(`/votes`, {
             body: JSON.stringify(vote),
             headers: {
@@ -69,6 +63,16 @@
                 console.log(err);
                 next();
             });
+    };
+        
+    const loadAnswers = () => {
+        $.get( `/answers/all?question=${gameView.currentQuestion._id}`, ( answers ) => {
+            answers.forEach(answer => {
+                const answerCard = answerTemplate(answer);
+                $('#answers').append(answerCard);
+                checkVotes(gameView.currentQuestion._id);
+            });
+        });
     };
 
     const loadQuestion = (question) => {
@@ -105,7 +109,7 @@
             });
     };
 
-    const checkVotes = (questionId) => {
+    const checkVotes = () => {
         const token = window.localStorage.getItem('token');
 
         fetch(`/votes/myVotes`, {
