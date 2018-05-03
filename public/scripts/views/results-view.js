@@ -17,7 +17,6 @@
         })
             .then(res => res.json())
             .then(res => {
-                console.log('res id', res._id);
                 fetch(`/votes/results?question=${res._id}`, {
                     headers: {
                         'token' : token,
@@ -28,7 +27,7 @@
                 })
                     .then(response => response.json())
                     .then(res => {
-                        console.log('RES', res);
+                        
                         $('#results-view').show();
                     })
                     .catch(err => {
