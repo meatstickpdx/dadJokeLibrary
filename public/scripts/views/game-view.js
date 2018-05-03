@@ -111,6 +111,7 @@
             .then( ( votes ) =>
                 votes.forEach(vote => {
                     $(`.${vote.emoji}`).removeClass('active').addClass('disabled');
+                    $(`.${vote.answer}`).removeClass('active').addClass('disabled');
                 }));
     };
    
