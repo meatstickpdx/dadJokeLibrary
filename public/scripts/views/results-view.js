@@ -10,6 +10,7 @@
             question: questionId
         };
         const token = window.localStorage.getItem('token');
+        console.log('DATA', data);
 
         fetch(`/votes/results`, {
             body: JSON.stringify(data),
@@ -28,7 +29,7 @@
             })
             .catch(err => {
                 console.log(err);
-                next();
+                // next();
             });
 
 

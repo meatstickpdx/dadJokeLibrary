@@ -26,7 +26,7 @@
 
     page('/vote/:question/:id/:emoji', (ctx) => gameView.vote(ctx.params.id, ctx.params.question, ctx.params.emoji, gameView.init));
 
-    page('/results', () => resultsView.init());
+    page('/results/:question', (ctx) => resultsView.init(ctx.params.question));
 
     page('/questions', () => questionView.init());
 
