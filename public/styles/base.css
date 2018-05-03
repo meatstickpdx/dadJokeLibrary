@@ -139,6 +139,7 @@
     color: transparent;
     text-shadow: 0 0 0 rgba(131, 131, 131, 0.712);  
     cursor: default;
+    pointer-events: none;
   }
 
   .vote {
