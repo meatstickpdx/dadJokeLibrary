@@ -59,6 +59,7 @@ describe.only('Vote E2E API', () => {
                 assert.ok(user._id);
 
                 token = body.token;
+                console.log('TOKEN', token);
 
                 vote1.voter = user._id;
                 vote2.voter = user._id;
@@ -120,7 +121,7 @@ describe.only('Vote E2E API', () => {
             .send(vote1)
             .then(checkOk)
             .then( ({ text }) => {
-                assert.equal(text, 'Cannot vote twice');
+                assert.equal(text, '"Cannot vote twice"');
             });
     });
 
@@ -150,6 +151,15 @@ describe.only('Vote E2E API', () => {
             .then(checkOk)
             .then(({ body }) => {
                 assert.deepEqual(body, [vote1, vote2].map(getQFields));
+            });
+    });
+
+    it('gets all votes by current user', () => {
+        return request.get(`/votes/myVotes`)
+            .set('Token', token)
+            .then(checkOk)
+            .then(({ body }) => {
+                assert.deepEqual(body, [vote1, vote2]);
             });
     });
 

@@ -3,8 +3,6 @@
 (function (module) {
 
     const gameView = {};
-    const errorView = module.errorView;
-    const handleError = err => errorView.init(err);
     const answerTemplate = Handlebars.compile($('#answers-template').html());
 
     gameView.currentQuestion = {};
@@ -13,11 +11,12 @@
         $('#game-view').show();
 
         $('#question').empty();
+        $('#answers').empty();
 
         $('#answers').empty();
 
         $.get( '/questions', ( questions ) => {
-            questions.length ? gameView.loadQuestion(questions) : gameView.questionError();
+            questions.length ? loadQuestion(questions) : questionError();
         }).then( () => gameView.loadAnswers() );
 
         $('#submitAnswer').off('click').on('click', handleAnswer);
@@ -25,27 +24,21 @@
     
     gameView.loadAnswers = () => {
         $.get( `/answers/all?question=${gameView.currentQuestion._id}`, ( answers ) => {
-            console.log('answers', answers);
             answers.forEach(answer => {
-                console.log('answer', answer);
                 const answerCard = answerTemplate(answer);
                 $('#answers').append(answerCard);
+                checkVotes(gameView.currentQuestion._id);
             });
         });
     };
 
-    gameView.loadQuestion = (questions) => {
-        gameView.currentQuestion = questions[questions.length - 1];
-        $('#question').append(`<h2>${gameView.currentQuestion.prompt}</h2>`);
-    };
-
-    gameView.vote = (id, question, emoji) => {
+    gameView.vote = (id, question, emoji, next) => {
         const vote = {
             emoji: emoji,
             question: question,
-            answer: id
+            answer: id,
+            voter: null
         };
-        console.log('VOTE!!!', vote);
         const token = window.localStorage.getItem('token');
 
         fetch(`/votes`, {
@@ -59,14 +52,22 @@
         })
             .then(response => response.json())
             .then(res => {
+                console.log('RES', res);
                 $('#answers-form').trigger('reset');
+                next();
             })
             .catch(err => {
                 console.log(err);
+                next();
             });
     };
 
-    gameView.questionError = () => {
+    const loadQuestion = (questions) => {
+        gameView.currentQuestion = questions[questions.length - 1];
+        $('#question').append(`<h2>${gameView.currentQuestion.prompt}</h2>`);
+    };
+
+    const questionError = () => {
         $('#question').append('<h2>Please set a question on the Admin Page</h2>');
     };
 
@@ -74,7 +75,8 @@
         event.preventDefault();
         const answer = {
             content: $('#answer').val(),
-            question: gameView.currentQuestion._id
+            question: gameView.currentQuestion._id,
+            author: null
         };
         const token = window.localStorage.getItem('token');
 
@@ -90,11 +92,29 @@
             .then(response => response.json())
             .then(res => {
                 console.log('res???', res);
+                location.reload();
                 $('#answers-form').trigger('reset');
             })
             .catch(err => {
                 console.log(err);
             });
+    };
+
+    const checkVotes = (questionId) => {
+        const token = window.localStorage.getItem('token');
+
+        fetch(`/votes/myVotes`, {
+            headers: {
+                'token' : token,
+            },
+            method: 'GET'
+        })
+            .then( response => response.json())
+            .then( ( votes ) =>
+                votes.forEach(vote => {
+                    $(`.${vote.emoji}`).removeClass('active').addClass('disabled');
+                    $(`.${vote.answer}`).removeClass('active').addClass('disabled');
+                }));
     };
    
     module.gameView = gameView;
