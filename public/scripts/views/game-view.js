@@ -15,9 +15,18 @@
 
         $('#answers').empty();
 
-        $.get( '/questions', ( questions ) => {
-            questions.length ? loadQuestion(questions) : questionError();
-        }).then( () => gameView.loadAnswers() );
+        const token = window.localStorage.getItem('token');
+
+        fetch(`/questions/voting`, {
+            headers: {
+                'token' : token,
+                'content-type': 'application/json'
+            },
+            method: 'GET',
+            mode: 'cors'
+        })
+            .then(res => res.json())
+            .then(res => loadQuestion(res));
 
         $('#submitAnswer').off('click').on('click', handleAnswer);
     };
@@ -62,9 +71,8 @@
             });
     };
 
-    const loadQuestion = (questions) => {
-        gameView.currentQuestion = questions[questions.length - 1];
-        $('#question').append(`<h2>${gameView.currentQuestion.prompt}</h2>`);
+    const loadQuestion = (question) => {
+        $('#question').append(`<h2>${question.prompt}</h2>`);
     };
 
     const questionError = () => {
