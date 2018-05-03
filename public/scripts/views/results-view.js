@@ -37,7 +37,9 @@
             });
     };
     const loadResults = (resultsArray) => {
-        console.log('resultsArray', resultsArray);
+        $('#heart').empty();
+        $('#laughing').empty();
+        $('#facepalm').empty();
 
         const heartArray = resultsArray.filter(vote => vote._id.emoji === '💖');
         heartArray.forEach( heart=> {
