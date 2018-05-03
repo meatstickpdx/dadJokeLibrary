@@ -2,7 +2,7 @@ const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
 
-describe.only('User E2E API', () => {
+describe('User E2E API', () => {
 
     let token = null;
     let userToken = null;

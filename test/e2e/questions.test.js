@@ -5,31 +5,29 @@ const { dropCollection } = require('./db');
 
 describe( 'Question API', () => {
 
-
     before(() => dropCollection('questions'));
-    before(() => dropCollection('answers'));
     before(() => dropCollection('users'));
 
     let token = '';
 
-    let punchline = {
+    const punchline = {
         content: 'It got mugged'
     };
 
     const joe = {
         username: 'Joe',
         password: 'abc',
+        role: 'admin'
     };
 
     let dadJoke = {
-        answers: [],
         prompt: 'This is a dad question',
         status: 'submit'
     };
 
     let dadBod = {
         prompt: '{ dadBod }',
-        status: 'submit'
+        status: 'vote'
     };
 
     before(() => {
@@ -52,17 +50,7 @@ describe( 'Question API', () => {
             });
     });
 
-    before(() => {
-        return request.post('/answers')
-            .set('Token', token)
-            .send(punchline)
-            .then(({ body }) => {
-                dadBod.answers = [body._id];
-                punchline = body;
-            });
-    });
-
-    it('saves a question', () => {
+    it('posts a question', () => {
         return request.post('/questions')
             .set('Token', token)
             .send(dadJoke)
@@ -77,75 +65,67 @@ describe( 'Question API', () => {
                 });
                 dadJoke = body;
             });
-
     });
 
-    const getFields = ({ _id, prompt }) => ({ _id, prompt });
+    const getFields = ({ _id, prompt, status }) => ({ _id, prompt, status });
 
     it('gets all questions', () => {
         return request.get('/questions')
             .set('Token', token)
-            .set('Authorization', 'admin')
             .then(({ body }) => {
                 assert.deepEqual(body, [dadBod, dadJoke].map(getFields));
             });
     });
 
-    // const getOneFields = ({ _id, prompt, answers }) => ({ _id, prompt, answers });
+    it('gets the vote with status "vote"', () => {
+        return request.get('/questions/voting')
+            .set('Token', token)
+            .then(({ body }) => {
+                assert.deepEqual(body.prompt, dadBod.prompt);
+            });
+    });
 
     it('get questions by id', () => {
         return request.get(`/questions/${dadBod._id}`)
             .set('Token', token)
-            .set('Authorization', 'admin')
             .then(({ body }) => {
                 assert.deepEqual(body, getFields(dadBod));
-            });
-    });
-
-    it('put questions by id', () => {
-        dadBod.status = 'vote';
-        return request.put(`/questions/${dadBod._id}`)
-            .set('Authorization', 'admin')
-            .set('Token', token)
-            .send(dadBod)
-            .then(({ body }) => {
-                assert.deepEqual(body, dadBod);
             });
     });
 
     it('updates all questions status to submit', () => {
         return request.put(`/questions`)
             .set('Token', token)
-            .set('Authorization', 'admin')
             .send(dadBod)
-            .then(({ body }) => {
-                assert.equal(body.nModified, 1);
+            .then(() => {
+                return request.get('/questions')
+                    .set('Token', token)
+                    .then(( { body }) => {
+                        assert.deepEqual(body[0].status, 'submit');
+                        assert.deepEqual(body[1].status, 'submit');
+                    });
             });
     });
 
-    it('get question and its answers by id', () => {
-        const dadBodFields = getFields(dadBod);
-        
-        return request.get(`/questions/${dadBod._id}/answers`)
-            .then(({ body }) => {
-                assert.deepEqual(body, {
-                    ...dadBodFields,
-                    answers: [{
-                        content: punchline.content,
-                        _id: punchline._id
-                    }]
-                });
+    it('put questions by id', () => {
+        return request.put(`/questions/${dadBod._id}`)
+            .set('Token', token)
+            .send(dadBod)
+            .then(() => {
+                return request.get(`/questions/${dadBod._id}`)
+                    .set('Token', token)
+                    .then(({ body }) => {
+                        assert.deepEqual(body.status, 'vote');
+                    });
             });
     });
 
     it('delete questions by id', () => {
         return request.delete(`/questions/${dadBod._id}`)
             .set('Token', token)
-            .set('Authorization', 'admin')
             .then(() => {
                 return request.get(`/questions/${dadBod._id}`)
-                    .set('Token', token)
-                    .set('Authorization', 'admin');
+                    .set('Token', token);
             })
             .then(res => {
                 assert.strictEqual(res.status, 404);
