@@ -22,7 +22,8 @@ describe('Vote model', () => {
 
     it('votes require emoji, voter, question, user', () => {
         const vote = new Vote({});
-        const errors = getErrors(vote.validateSync(), 3);
+        const errors = getErrors(vote.validateSync(), 4);
+        assert.equal(errors.voter.kind, 'required');
         assert.equal(errors.emoji.kind, 'required');
         assert.equal(errors.question.kind, 'required');
         assert.equal(errors.answer.kind, 'required');

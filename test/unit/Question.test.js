@@ -1,14 +1,9 @@
 const { assert } = require('chai');
 const Question = require('../../lib/models/Question');
-const Answer = require('../../lib/models/Answer');
 const User = require('../../lib/models/User');
 const { getErrors } = require('./helpers');
 
 describe('Question model', () => {
-
-    const punchline = {
-        content: 'It got mugged'
-    };
 
     const joe = {
         username: 'Joe'
@@ -19,11 +14,9 @@ describe('Question model', () => {
         status: 'submit'
     };
 
-    const answer = new Answer(punchline);
     const user = new User(joe);
 
     it('is a valid model', () => {
-        data.answers = [answer._id];
         data.user = user._id;
         const question = new Question(data);
         data._id = question._id;
