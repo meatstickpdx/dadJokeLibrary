@@ -21,7 +21,8 @@
                     $('#question-list').append(
                         $(`<option>`, {
                             value: question.prompt,
-                            text: `${question.prompt}`
+                            text: `${question.prompt}`,
+                            _id: question._id
                         })
                     );
                 });
@@ -32,6 +33,8 @@
     };
 
     adminView.initializeQuestionSelection = () => {
+        const token = window.localStorage.getItem('token');
+
         $('#question-list')
             .off('change')
             .on('change', event => {
@@ -39,11 +42,32 @@
         
                 const data = {
                     setQuestion: $('#question-list').val(),
+                    questionId: $('#question-list option:selected').attr('_id')
                 };
 
-                console.log('Question set to:', data.setQuestion);
+                fetch(`/questions`, {
+                    method: 'PUT',
+                    mode: 'cors',
+                    headers: {
+                        'token' : token,
+                        'content-type': 'application/json'
+                    }
+                })
+                    .then(() => {
+                        fetch(`questions/${data.questionId}`, {
+                            method: 'PUT',
+                            mode: 'cors',
+                            headers: {
+                                'token' : token,
+                                'content-type': 'application/json'
+                            }
+                        });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
 
-                // adminView.sendQuestion(data);
+                console.log('Question set to:', data.setQuestion);
             });
     };
 
@@ -59,7 +83,7 @@
             .off('submit')
             .on('submit', event => {
                 event.preventDefault();
-        
+
                 const data = {
                     submissionTime: $('input[id=submissionTime]').val(),
                     votingTime: $('input[id=votingTime]').val(),
