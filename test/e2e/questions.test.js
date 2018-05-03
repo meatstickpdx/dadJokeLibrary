@@ -113,6 +113,16 @@ describe( 'Question API', () => {
             });
     });
 
+    it('updates all questions status to submit', () => {
+        return request.put(`/questions`)
+            .set('Token', token)
+            .set('Authorization', 'admin')
+            .send(dadBod)
+            .then(({ body }) => {
+                assert.equal(body.nModified, 1);
+            });
+    });
+
     it('get question and its answers by id', () => {
         const dadBodFields = getFields(dadBod);
         
