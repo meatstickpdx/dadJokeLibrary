@@ -34,7 +34,8 @@
         const vote = {
             emoji: emoji,
             question: question,
-            answer: id
+            answer: id,
+            voter: null
         };
         const token = window.localStorage.getItem('token');
 
@@ -49,7 +50,8 @@
         })
             .then(response => response.json())
             .then(res => {
-                console.log('res???', res);
+                console.log('RES', res);
+                $('#answers-form').trigger('reset');
                 next();
             })
             .catch(err => {
@@ -71,7 +73,8 @@
         event.preventDefault();
         const answer = {
             content: $('#answer').val(),
-            question: gameView.currentQuestion._id
+            question: gameView.currentQuestion._id,
+            author: null
         };
         const token = window.localStorage.getItem('token');
 

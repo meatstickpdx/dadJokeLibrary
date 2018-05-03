@@ -121,7 +121,7 @@ describe.only('Vote E2E API', () => {
             .send(vote1)
             .then(checkOk)
             .then( ({ text }) => {
-                assert.equal(text, 'Cannot vote twice');
+                assert.equal(text, '"Cannot vote twice"');
             });
     });
 
