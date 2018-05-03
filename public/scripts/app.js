@@ -21,7 +21,7 @@
     });
 
     page('/', () => authView.init());
-    
+
     page('/game', () => gameView.init());
 
     page('/vote/:question/:id/:emoji', (ctx) => gameView.vote(ctx.params.id, ctx.params.question, ctx.params.emoji, gameView.init));
@@ -37,7 +37,7 @@
         authView.init();
     });
 
-    page('*', () => page.redirect('/login'));
+    page('*', () => page.redirect('/'));
 
     page({ hashbang: true });
 
