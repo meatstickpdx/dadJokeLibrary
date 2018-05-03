@@ -3,7 +3,7 @@ const request = require('./request');
 const { dropCollection } = require('./db');
 
 
-describe( 'Question API', () => {
+describe( 'Question E2E API', () => {
 
     before(() => dropCollection('questions'));
     before(() => dropCollection('users'));
