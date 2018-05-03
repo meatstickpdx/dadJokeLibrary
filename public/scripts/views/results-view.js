@@ -37,10 +37,27 @@
             });
     };
     const loadResults = (resultsArray) => {
-        resultsArray.forEach(results => {
-            const resultsCard = resultsTemplate(results);
-            $(`#results-view`).append(resultsCard);
+        console.log('resultsArray', resultsArray);
+
+        const heartArray = resultsArray.filter(vote => vote._id.emoji === '💖');
+        heartArray.forEach( heart=> {
+            const card = resultsTemplate(heart);
+            $('#heart').append(card);
         });
+
+        const laughArray = resultsArray.filter(vote => vote._id.emoji === '😂');
+        console.log(laughArray);
+        laughArray.forEach( laughing=> {
+            const card = resultsTemplate(laughing);
+            $('#laughing').append(card);
+        });
+
+        const faceArray = resultsArray.filter(vote => vote._id.emoji === '🤦');
+        faceArray.forEach( facepalm=> {
+            const card = resultsTemplate(facepalm);
+            $('#facepalm').append(card);
+        });
+
     };
     module.resultsView = resultsView;
 

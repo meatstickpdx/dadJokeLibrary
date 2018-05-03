@@ -84,6 +84,19 @@
             <section id="answers"></section>
         </section>
             <section id="results-view">
+                <section id="results-box">
+                    <section class="heart results">
+                        <ol id="heart"></ol>
+                    </section>
+
+                    <section class="laughing results">
+                            <ol id="laughing"></ol>
+                    </section>
+
+                    <section class="facepalm results">
+                            <ol id="facepalm"></ol>
+                    </section>
+                </section>
         </section>
 
         
@@ -103,12 +116,7 @@
     </script>
     
     <script id="results-template" type="text/x-handlebars-template">
-            <h3>{{content}}</h3>
-            <section class ="emoji">
-                <a href="😂">😂 Count</a> 
-                <a href="🤦">🤦 Count</a>
-                <a href="💖">💖 Count</a>
-            </section>
+            <h3>{{_id.answer}}({{count}})</h3>
     </script>
 
 
