@@ -72,11 +72,8 @@
     };
 
     const loadQuestion = (question) => {
+        gameView.currentQuestion = question;
         $('#question').append(`<h2>${question.prompt}</h2>`);
-    };
-
-    const questionError = () => {
-        $('#question').append('<h2>Please set a question on the Admin Page</h2>');
     };
 
     const handleAnswer = event => {
