@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Lato" rel="stylesheet">
+
     <link rel="stylesheet" href="styles/base.css" type="text/css">
     <!-- <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/layout.css">
@@ -15,13 +17,14 @@
 </head>
 <body>
     <header>
+        <h1>dadjokelibrary</h1>
         <ul>
             <li><a href="/admin">Admin</a></li>
-            <li><a href="/questions">Submit a joke prompt</a></li>
-            <li><a href="/game">Game</a></li>
+            <li><a href="/questions">Submit</a></li>
+            <li><a href="/game">Vote</a></li>
             <li><a href="/results">Results</a></li>
             <li><a href="/">Log in</a></li>
-            <li><a href="/logout">Log out</a></li>
+            <li><a href="/logout">Logout</a></li>
         </ul>
 
         <p id="header-content">Please log in</p>
@@ -82,17 +85,17 @@
         </section>
 
         <section id="results-view" class="view"></section>
-
-        <section id="error-view" class="view"></section>
     </main>
 
     <!-- TEMPLATES -->
     <script id="answers-template" type="text/x-handlebars-template">
         <section class="answer card">
             <h3>{{content}}</h3>
-            <a href="/vote/{{question}}/{{_id}}/😂" class="laughing">😂</a>
-            <a href="/vote/{{question}}/{{_id}}/🤦" class="facepalm">🤦</a>
-            <a href="/vote/{{question}}/{{_id}}/💖" class="heart">💖</a>
+            <section class="emoji">
+                <a href="/vote/{{question}}/{{_id}}/😂" class="vote active {{_id}} 😂">😂</a>
+                <a href="/vote/{{question}}/{{_id}}/🤦" class="vote active {{_id}} 🤦">🤦</a>
+                <a href="/vote/{{question}}/{{_id}}/💖" class="vote active {{_id}} 💖">💖</a>
+            </section>
         </section>
     </script>
 

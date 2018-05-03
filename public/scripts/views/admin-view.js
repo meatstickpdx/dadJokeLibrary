@@ -3,8 +3,6 @@
 (function (module) {
 
     const adminView = {};
-    const errorView = module.errorView;
-    const handleError = err => errorView.init(err);
 
     adminView.populateQuestions = () => {
         const token = window.localStorage.getItem('token');
