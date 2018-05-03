@@ -130,16 +130,15 @@
     transition: 0.3s;
   }
 
-  .emoji a:hover{
+  .emoji a.active:hover{
     -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: rgba(255, 238, 0, 0.712);
     }
 
   .emoji .disabled{
-    color: transparent;  
-    /* text-shadow: 0 0 0 red; */
-    -webkit-text-stroke-color: rgb(158, 158, 158);
-    cursor: not-allowed;
+    color: transparent;
+    text-shadow: 0 0 0 rgba(131, 131, 131, 0.712);  
+    cursor: default;
   }
 
   .vote {

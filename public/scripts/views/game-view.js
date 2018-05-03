@@ -107,7 +107,7 @@
             .then( response => response.json())
             .then( ( votes ) =>
                 votes.forEach(vote => {
-                    $(`.${vote.answer}${vote.emoji}`).addClass('disabled');
+                    $(`.${vote.emoji}`).removeClass('active').addClass('disabled');
                 }));
     };
    
