@@ -4,8 +4,34 @@
 
     const resultsView = {};
 
-    resultsView.init = () => {
+    resultsView.init = (questionId) => {
         $('#results-view').show();
+        const data = {
+            question: questionId
+        };
+        const token = window.localStorage.getItem('token');
+
+        fetch(`/votes/results`, {
+            body: JSON.stringify(data),
+            headers: {
+                'token' : token,
+                'content-type': 'application/json'
+            },
+            method: 'GET',
+            mode: 'cors'
+        })
+            .then(response => response.json())
+            .then(res => {
+                console.log('RES', res);
+                // $('#answers-form').trigger('reset');
+                // next();
+            })
+            .catch(err => {
+                console.log(err);
+                next();
+            });
+
+
     };
 
     module.resultsView = resultsView;
