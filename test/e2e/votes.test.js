@@ -2,7 +2,7 @@ const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
 
-describe.only('Vote E2E API', () => {
+describe('Vote E2E API', () => {
 
     let token = null;
 
@@ -161,6 +161,33 @@ describe.only('Vote E2E API', () => {
             .then(({ body }) => {
                 assert.deepEqual(body, [vote1, vote2]);
             });
+    });
+
+    const aggFields = ({ answer, emoji }) => {
+        return {
+            _id: {
+                answer: answer,
+                emoji: emoji
+            },
+            count: 1
+        };
+    };
+
+
+    it('gets all aggregated votes', () => {
+        return request.post('/votes')
+            .set('Authorization', 'admin')
+            .set('Token', token)
+            .send(vote1)
+            .then(() => {
+                return request.get(`/votes/results?question=${question._id}`)
+                    .set('Token', token)
+                    .then(checkOk)
+                    .then(({ body }) => {
+                        assert.deepEqual(body, [vote2, vote1].map(aggFields));
+                    });
+            });
+        
     });
 
     it('updates a vote', () => {
