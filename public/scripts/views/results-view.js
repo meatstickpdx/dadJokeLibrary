@@ -3,6 +3,7 @@
 (function (module) {
 
     const resultsView = {};
+    const resultsTemplate = Handlebars.compile($(`#results-template`).html());
 
     resultsView.init = (questionId) => {
         $('#results-view').show();
