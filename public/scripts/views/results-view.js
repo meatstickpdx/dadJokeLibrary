@@ -3,6 +3,7 @@
 (function (module) {
 
     const resultsView = {};
+    const resultsTemplate = Handlebars.compile($(`#results-template`).html());
 
     resultsView.init = () => {
         const token = window.localStorage.getItem('token');
@@ -27,7 +28,7 @@
                 })
                     .then(response => response.json())
                     .then(res => {
-                        
+                        loadResults(res);
                         $('#results-view').show();
                     })
                     .catch(err => {
@@ -35,7 +36,12 @@
                     });
             });
     };
-
+    const loadResults = (resultsArray) => {
+        resultsArray.forEach(results => {
+            const resultsCard = resultsTemplate(results);
+            $(`#results-view`).append(resultsCard);
+        });
+    };
     module.resultsView = resultsView;
 
 })(window.module);
