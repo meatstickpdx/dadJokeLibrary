@@ -18,7 +18,6 @@
         })
             .then(res => res.json())
             .then(res => {
-                console.log('res id', res._id);
                 fetch(`/votes/results?question=${res._id}`, {
                     headers: {
                         'token' : token,
@@ -29,7 +28,7 @@
                 })
                     .then(response => response.json())
                     .then(res => {
-                        console.log('RES', res);
+                        loadResults(res);
                         $('#results-view').show();
                     })
                     .catch(err => {
@@ -37,7 +36,12 @@
                     });
             });
     };
-
+    const loadResults = (resultsArray) => {
+        resultsArray.forEach(results => {
+            const resultsCard = resultsTemplate(results);
+            $(`#results-view`).append(resultsCard);
+        });
+    };
     module.resultsView = resultsView;
 
 })(window.module);
