@@ -36,6 +36,7 @@
                     });
             });
     };
+    
     const loadResults = (resultsArray) => {
         console.log('resultsArray', resultsArray);
 
