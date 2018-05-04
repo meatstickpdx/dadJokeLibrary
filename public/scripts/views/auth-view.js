@@ -36,17 +36,15 @@
                 localStorage.token = res.token;
                 localStorage.user = res.username;
                 if(res.error) {
-                    console.log(res.error);
                     alert(res.error);
                 } else if(res.role === 'admin') {
                     $('.admin').removeClass('hidden');
-                    $('#login-form').trigger('reset');
                     page('/game');
                 } else {
                     $('.admin').addClass('hidden');
-                    $('#login-form').trigger('reset');
                     page('/game');
                 }
+                $('#login-form').trigger('reset');
             })
             .catch(err => {
                 console.log(err);
