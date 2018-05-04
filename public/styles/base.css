@@ -149,6 +149,16 @@ input:focus {
   outline: 3px solid gold;
 }
 
+#credits {
+  color: gray;
+  font-size: .8em;
+  position: absolute;
+  right: 50%;
+  top: 85%;
+  text-align: center;
+  z-index: -1;
+}
+
 .emoji {
   font-size: 1.5em;
   position: absolute;
@@ -230,13 +240,16 @@ input:focus {
     width: 100%;
     align-content: center;
   }
+
   .results {
     width: 30%;
     text-align: center;
   }
+
   .results h3 {
     font-size: 3em;
   }
+
   .results h3::after {
     content:'';
     position: absolute;
@@ -247,5 +260,4 @@ input:focus {
     border-bottom: 2px solid;
     margin-top: 10px;
   }
-  
 }
