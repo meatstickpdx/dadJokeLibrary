@@ -35,6 +35,10 @@
             .then(res => {
                 localStorage.token = res.token;
                 localStorage.user = res.username;
+                if(res.error) {
+                    console.log(res.error);
+                    alert(res.error);
+                }
                 if(res.role === 'admin') {
                     $('.admin').removeClass('hidden');
                 } else {
