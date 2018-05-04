@@ -301,6 +301,13 @@ ol > li:before {
   margin-top: 15px;
 }
 
+footer {
+  margin-top: 35%;
+  text-align: center;
+  color: gray;
+  font-size: .7em;
+}
+
 @media (min-width: 400px) {
   form {
     overflow: hidden;
@@ -365,7 +372,4 @@ ol > li:before {
     margin-top: 10px;
   }
 
-  footer {
-    text-align: center;
-  }
 }
