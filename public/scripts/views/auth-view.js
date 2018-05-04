@@ -5,6 +5,7 @@
     const authView = {};
 
     authView.init = () => {
+        $('.admin').addClass('hidden');
         $('#auth-view').show();
         $('#sign-up').off('click').on('click', handleSignup);
         $('#login').off('click').on('click', handleLogin);
@@ -29,6 +30,11 @@
             .then(res => {
                 localStorage.token = res.token;
                 localStorage.user = res.username;
+                if(res.role === 'admin') {
+                    $('.admin').removeClass('hidden');
+                } else {
+                    $('.admin').addClass('hidden');
+                }
                 $('#login-form').trigger('reset');
                 page('/game');
             })
@@ -57,6 +63,11 @@
                     $('#login-form').trigger('reset');
                     alert(res.error);
                 } else {
+                    if(res.role === 'admin') {
+                        $('.admin').removeClass('hidden');
+                    } else {
+                        $('.admin').addClass('hidden');
+                    }
                     localStorage.token = res.token;
                     localStorage.user = res.username;
                     $('#login-form').trigger('reset');
