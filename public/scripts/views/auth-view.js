@@ -38,8 +38,7 @@
                 if(res.error) {
                     console.log(res.error);
                     alert(res.error);
-                }
-                if(res.role === 'admin') {
+                } else if(res.role === 'admin') {
                     $('.admin').removeClass('hidden');
                 } else {
                     $('.admin').addClass('hidden');
