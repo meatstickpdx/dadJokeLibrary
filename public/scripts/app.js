@@ -35,6 +35,7 @@
     page('/logout', () => {
         localStorage.clear();
         page.redirect('/');
+        location.reload();
     });
 
     page('*', () => page.redirect('/'));
