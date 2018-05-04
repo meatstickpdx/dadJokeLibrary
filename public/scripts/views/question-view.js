@@ -18,7 +18,6 @@
                     setQuestion: $('textarea[id=setQuestion]').val(),
                 };
 
-                console.log('Question set to:', data.setQuestion);
                 questionView.sendQuestion(data);
             });
     };
@@ -47,6 +46,8 @@
             .catch(err => {
                 console.log(err);
             });
+
+        $('#question-form').trigger('reset');
 
     };
 
