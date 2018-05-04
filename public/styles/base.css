@@ -6,6 +6,7 @@ html, body {
   font-family: 'Lato', sans-serif;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
 body{
@@ -261,6 +262,10 @@ ol > li{
   border-left: 2px solid #CCCCCC;
 }
 
+ol > li h4{
+  padding-top: .2em;
+}
+
 ol > li:before {
   position: absolute;
   top: 0;
@@ -302,10 +307,16 @@ ol > li:before {
 }
 
 footer {
-  margin-top: 35%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   text-align: center;
   color: gray;
   font-size: .7em;
+}
+
+footer p {
+  display: block;
 }
 
 @media (min-width: 400px) {
@@ -342,34 +353,11 @@ footer {
 
 @media (max-width: 600px) {
   .card {
-      min-width: 250px;
+    min-width: 250px;
   }
 
-  #results-box {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    align-content: center;
-  }
-
-  .results {
-    width: 30%;
-    text-align: center;
-  }
-
-  .results h3 {
-    font-size: 3em;
-  }
-
-  .results h3::after {
-    content:'';
-    position: absolute;
-    left: 0;
-    display: inline-block;
-    height: 1em;
-    width: 100%;
-    border-bottom: 2px solid;
-    margin-top: 10px;
-  }
+  select#question-list {
+    max-width: 80%;
+  }  
 
 }

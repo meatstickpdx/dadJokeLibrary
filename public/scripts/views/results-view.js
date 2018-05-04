@@ -5,13 +5,12 @@
     const resultsView = {};
     const resultsTemplate = Handlebars.compile($(`#results-template`).html());
 
-    $('#question-results').empty();
-    $('#heart').empty();
-    $('#laughing').empty();
-    $('#facepalm').empty();
-
     resultsView.init = () => {
         const token = window.localStorage.getItem('token');
+        $('#question-results').empty();
+        $('#heart').empty();
+        $('#laughing').empty();
+        $('#facepalm').empty();
         
         fetch(`/questions/voting`, {
             headers: {
