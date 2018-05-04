@@ -262,6 +262,10 @@ ol > li{
   border-left: 2px solid #CCCCCC;
 }
 
+ol > li h4{
+  padding-top: .2em;
+}
+
 ol > li:before {
   position: absolute;
   top: 0;
