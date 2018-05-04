@@ -2,7 +2,7 @@ const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
 
-describe('Vote E2E API', () => {
+describe.only('Vote E2E API', () => {
 
     let token = null;
 
@@ -59,7 +59,6 @@ describe('Vote E2E API', () => {
                 assert.ok(user._id);
 
                 token = body.token;
-                console.log('TOKEN', token);
 
                 vote1.voter = user._id;
                 vote2.voter = user._id;
@@ -173,23 +172,6 @@ describe('Vote E2E API', () => {
         };
     };
 
-
-    it('gets all aggregated votes', () => {
-        return request.post('/votes')
-            .set('Authorization', 'admin')
-            .set('Token', token)
-            .send(vote1)
-            .then(() => {
-                return request.get(`/votes/results?question=${question._id}`)
-                    .set('Token', token)
-                    .then(checkOk)
-                    .then(({ body }) => {
-                        assert.deepEqual(body, [vote2, vote1].map(aggFields));
-                    });
-            });
-        
-    });
-
     it('updates a vote', () => {
         vote2.emoji = '😂';
 
@@ -201,5 +183,22 @@ describe('Vote E2E API', () => {
             .then(({ body }) => {
                 assert.deepEqual(body, vote2);
             });
+    });
+
+    it('gets all aggregated votes', () => {
+        return request.post('/votes')
+            .set('Authorization', 'admin')
+            .set('Token', token)
+            .send(vote1)
+            .then(() => {
+                return request.get(`/votes/results?question=${question._id}`)
+                    .set('Token', token)
+                    .then(checkOk)
+                    .then(({ body }) => {
+                        vote2.answer = body[0]._id.answer;
+                        vote1.answer = body[1]._id.answer;
+                        assert.deepEqual(body, [vote2, vote1].map(aggFields));
+                    });
+            });        
     });
 });

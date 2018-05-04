@@ -55,7 +55,6 @@
         })
             .then(response => response.json())
             .then(res => {
-                console.log('RES', res);
                 $('#answers-form').trigger('reset');
                 next();
             })
@@ -100,7 +99,6 @@
         })
             .then(response => response.json())
             .then(res => {
-                console.log('res???', res);
                 location.reload();
                 $('#answers-form').trigger('reset');
             })
