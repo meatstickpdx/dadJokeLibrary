@@ -91,6 +91,30 @@ form button:hover {
   background: gold;
 }
 
+.status {
+  font-size: 1.5em;
+  margin-top: 1em;
+  opacity: 0;
+  text-align: center;
+}
+
+.status-submit {
+  animation-name: submit;
+  animation-duration: 3s;
+}
+
+@keyframes submit {
+  0% {
+    opacity: 1;
+  }
+  80%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
 select#question-list {
   background-color: #ffe5e5;
   font-size: 1em;
@@ -150,11 +174,6 @@ input:focus {
 
 .vote {
   padding: 5px;
-}
-
-.status {
-    height: 2em;
-    width: calc(50% - 10px);
 }
 
 .card {

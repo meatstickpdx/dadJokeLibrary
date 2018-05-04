@@ -49,6 +49,11 @@
 
         $('#question-form').trigger('reset');
 
+        $('.status').toggleClass('status-submit');
+        
+        setTimeout(() => {
+            $('.status').toggleClass('status-submit');
+        }, 3000);
     };
 
     module.questionView = questionView;

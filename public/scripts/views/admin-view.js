@@ -72,7 +72,7 @@
     };
 
     adminView.init = () => {
-        $('#question-list').empty();
+        ($('#question-list').empty());
 
         adminView.populateQuestions();
         adminView.initializeQuestionSelection();
