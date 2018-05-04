@@ -199,6 +199,6 @@ describe('Vote E2E API', () => {
                         vote1.answer = body[1]._id.answer;
                         assert.deepEqual(body, [vote2, vote1].map(aggFields));
                     });
-            });        
+            });
     });
 });

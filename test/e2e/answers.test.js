@@ -17,7 +17,7 @@ describe('Answer E2E API', () => {
         content: 'To get to the other side',
     };
 
-    let answer2 = {
+    const answer2 = {
         content: `Because it's a stupid chicken`,
     };
 

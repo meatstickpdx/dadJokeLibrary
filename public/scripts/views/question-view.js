@@ -3,8 +3,6 @@
 (function (module) {
 
     const questionView = {};
-    const errorView = module.errorView;
-    const handleError = err => errorView.init(err);
 
     questionView.init = () => {
         $('#question-view').show();
