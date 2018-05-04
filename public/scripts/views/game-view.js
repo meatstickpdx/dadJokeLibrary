@@ -54,7 +54,7 @@
             mode: 'cors'
         })
             .then(response => response.json())
-            .then(res => {
+            .then(() => {
                 $('#answers-form').trigger('reset');
                 next();
             })
@@ -98,7 +98,7 @@
             mode: 'cors'
         })
             .then(response => response.json())
-            .then(res => {
+            .then(() => {
                 location.reload();
                 $('#answers-form').trigger('reset');
             })
