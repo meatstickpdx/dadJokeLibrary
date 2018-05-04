@@ -301,6 +301,10 @@ ol > li:before {
   margin-top: 15px;
 }
 
+footer {
+  text-align: center;
+}
+
 @media (min-width: 400px) {
   form {
     overflow: hidden;
@@ -336,7 +340,8 @@ ol > li:before {
 @media (max-width: 600px) {
   .card {
       min-width: 250px;
-
+  }
+  
   #results-box {
     display: flex;
     justify-content: center;
@@ -363,4 +368,5 @@ ol > li:before {
     border-bottom: 2px solid;
     margin-top: 10px;
   }
+
 }
