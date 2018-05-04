@@ -53,10 +53,15 @@
         })
             .then(response => response.json())
             .then(res => {
-                localStorage.token = res.token;
-                localStorage.user = res.username;
-                $('#login-form').trigger('reset');
-                page('/game');
+                if(res.error) {
+                    $('#login-form').trigger('reset');
+                    alert(res.error);
+                } else {
+                    localStorage.token = res.token;
+                    localStorage.user = res.username;
+                    $('#login-form').trigger('reset');
+                    page('/game');
+                }
             })
             .catch(err => {
                 console.log(err);

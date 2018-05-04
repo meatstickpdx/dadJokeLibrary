@@ -1,173 +1,200 @@
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Lato', sans-serif;
-  }
-  
-  h1, h2 {
-    font-family: 'Abril Fatface', cursive;
-  }
+html, body {
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-  h1 {
-    margin-bottom: 0px;
-    display: inline;
-  }
+.hidden {
+  display: none;
+}
 
-  h2 {
-    text-align: center;
-  }
+h1, h2 {
+  font-family: 'Abril Fatface', cursive;
+}
 
-  h3 {
-    margin: .5em;
-    position: relative;
-  }
-  
-  .hidden {
-      display: none;
-  }
+h1 {
+  display: inline;
+}
 
-  header {
-    border-bottom: 1px solid lightgray;
-    text-align: right;
-  }
+h2 {
+  text-align: center;
+}
 
-  header a, header a:visited{
-    text-transform: lowercase;
-    text-decoration: none;
-    color: black;
-  }
+h3 {
+  margin: .5em;
+  position: relative;
+}
 
-  header a:hover, header a:active{
-    color: #92efcf;
-  }
+header {
+  border-bottom: 1px solid lightgray;
+  text-align: right;
+}
 
-  header p {
-    color: gray;
-    display: block;
-    font-size: .9em;
-    margin: 0;
-    padding-bottom: 5px;
-  }
+header a, header a:visited{
+  color: black;
+  text-decoration: none;
+  text-transform: lowercase;
+}
 
-  header ul{
-    list-style-type: none;
-  }
+header a:hover, header a:active{
+  color: #92efcf;
+}
 
-  header li {
-    color: gray;
-    float: left;
-    margin-right: 1em;
-    font-size: .9em;
-  }
+header p {
+  color: gray;
+  display: block;
+  font-size: .9em;
+  margin: 0;
+  padding-bottom: 5px;
+}
 
+header ul{
+  list-style-type: none;
+}
+
+header li {
+  color: gray;
+  float: left;
+  font-size: .9em;
+  margin-right: 1em;
+}
+
+form {
+  background: #f9f9f9;
+  border: 1px solid #c1c1c1;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  max-width: 600px;
+  padding: 1em;
+}
+
+form input {
+  background: #fff;
+  border: 1px solid #9c9c9c;
+  margin-bottom: 1rem;
+}
+
+form button {
+  background: #ffe5e5;
+  border: 0;
+  padding: 0.7em;
+}
+
+form button:hover {
+  background: gold;
+}
+
+label {
+  display: block;
+  text-align: right;
+  padding: 0.5em 1.5em 0.5em 0;
+}
+
+textarea {
+  display: block;
+  margin: 0.5em 1.5em 0.5em 0;
+  text-align: right;
+  width: calc(64%);
+}
+
+textarea:focus {
+  outline: 3px solid gold;
+}
+
+input {
+  margin-bottom: 0.5rem;
+  padding: 0.7em;
+  width: 100%;
+}
+
+input:focus {
+  outline: 3px solid gold;
+}
+
+.emoji {
+  font-size: 1.5em;
+  position: absolute;
+  right: calc(15%);
+}
+
+.emoji a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.emoji a.active:hover {
+  -webkit-text-stroke-color: rgba(255, 238, 0, 0.712);
+  -webkit-text-stroke-width: 3px;
+}
+
+.emoji .disabled {
+  color: transparent;
+  cursor: default;
+  pointer-events: none;
+  text-shadow: 0 0 0 rgba(131, 131, 131, 0.712);  
+}
+
+.vote {
+  padding: 5px;
+}
+
+.status {
+    height: 2em;
+    width: calc(50% - 10px);
+}
+
+.card {
+  background: #f9f9f9;
+  border: 1px solid #c1c1c1;
+  border-radius: 5px;
+  max-width: calc(80% - 100px);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  min-width: 500px;
+  padding: .8em;
+  transition: 0.3s;
+}
+
+.card:hover {
+  background: #ffe5e5;
+  border: 1px solid gold;
+}
+
+@media (min-width: 400px) {
   form {
-    padding: 1em;
-    background: #f9f9f9;
-    border: 1px solid #c1c1c1;
-    margin-top: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1em;
-    border-radius: 5px;
+    overflow: hidden;
   }
 
-  form input {
-    margin-bottom: 1rem;
-    background: #fff;
-    border: 1px solid #9c9c9c;
-  }
-
-  form button {
-    background: #ffe5e5;
-    padding: 0.7em;
-    border: 0;
-  }
-
-  form button:hover {
-    background: gold;
-  }
-  
   label {
-    text-align: right;
-    display: block;
-    padding: 0.5em 1.5em 0.5em 0;
+    float: left;
+    width: 200px;
   }
 
-  textarea {
-      text-align: right;
-      display: block;
-      width: calc(64%);
-      margin: 0.5em 1.5em 0.5em 0;
-  }
-
-  textarea:focus {
-    outline: 3px solid gold;
-  }
-  
   input {
-    width: 100%;
-    padding: 0.7em;
-    margin-bottom: 0.5rem;
+    float: left;
+    width: calc(100% - 200px);
   }
 
-  input:focus {
-    outline: 3px solid gold;
+  button{
+    float: right;
+    width: calc(45%);
   }
 
-  .emoji{
-    position: absolute;
-    right: calc(15%);
-    font-size: 1.5em;
+  #sign-up {
+    float: left;
+    width: calc(80% - 200px);
   }
 
-  .emoji a{
-    text-decoration: none;
-    transition: 0.3s;
-  }
-
-  .emoji a.active:hover{
-    -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: rgba(255, 238, 0, 0.712);
-    }
-
-  .emoji .disabled{
-    color: transparent;
-    text-shadow: 0 0 0 rgba(131, 131, 131, 0.712);  
-    cursor: default;
-    pointer-events: none;
-  }
-
-  .vote {
-    padding: 5px;
-  }
-
-  .status {
-      height: 2em;
-      width: calc(50% - 10px);
-  }
-
-  .card {
-    padding: .8em;
-    background: #f9f9f9;
-    border: 1px solid #c1c1c1;
-    margin-top: 2rem;
-    max-width: calc(80% - 100px);
-    min-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1em;
-    transition: 0.3s;
-    border-radius: 5px;
-  }
-
-  .card:hover {
-    border: 1px solid gold;
-    background: #ffe5e5;
+  #login {
+    float: right;
+    width: calc(80% - 200px);
   }
 
   #results-box {
@@ -194,34 +221,4 @@
     margin-top: 10px;
   }
   
-  @media (min-width: 400px) {
-    form {
-      overflow: hidden;
-    }
-  
-    label {
-      float: left;
-      width: 200px;
-    }
-  
-    input {
-      float: left;
-      width: calc(100% - 200px);
-    }
-  
-    button{
-        float: right;
-        width: calc(45%);
-    }
-
-    #sign-up {
-        float: left;
-        width: calc(80% - 200px);
-    }
-  
-    #login {
-        float: right;
-        width: calc(80% - 200px);
-    }
-    
-  }
+}
