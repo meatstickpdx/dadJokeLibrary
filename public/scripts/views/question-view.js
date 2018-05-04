@@ -52,6 +52,7 @@
         setTimeout(() => {
             $('.status').toggleClass('status-submit');
         }, 3000);
+
     };
 
     module.questionView = questionView;
