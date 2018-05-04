@@ -116,6 +116,30 @@ form button:hover {
   width: fit-content;
 }
 
+.status {
+  font-size: 1.5em;
+  margin-top: 1em;
+  opacity: 0;
+  text-align: center;
+}
+
+.status-submit {
+  animation-name: submit;
+  animation-duration: 3s;
+}
+
+@keyframes submit {
+  0% {
+    opacity: 1;
+  }
+  80%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
 select#question-list {
   background-color: #ffe5e5;
   font-size: 1em;
@@ -150,6 +174,16 @@ input:focus {
   outline: 3px solid gold;
 }
 
+#credits {
+  color: gray;
+  font-size: .8em;
+  position: absolute;
+  right: 50%;
+  top: 85%;
+  text-align: center;
+  z-index: -1;
+}
+
 .emoji {
   font-size: 1.5em;
   position: absolute;
@@ -175,11 +209,6 @@ input:focus {
 
 .vote {
   padding: 5px;
-}
-
-.status {
-    height: 2em;
-    width: calc(50% - 10px);
 }
 
 .card {
@@ -304,9 +333,34 @@ ol > li:before {
 
 }
 
-  @media (max-width: 600px) {
-    .card {
+@media (max-width: 600px) {
+  .card {
       min-width: 250px;
+
+  #results-box {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-content: center;
   }
-  
+
+  .results {
+    width: 30%;
+    text-align: center;
+  }
+
+  .results h3 {
+    font-size: 3em;
+  }
+
+  .results h3::after {
+    content:'';
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    height: 1em;
+    width: 100%;
+    border-bottom: 2px solid;
+    margin-top: 10px;
+  }
 }

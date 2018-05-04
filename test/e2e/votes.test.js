@@ -59,7 +59,6 @@ describe('Vote E2E API', () => {
                 assert.ok(user._id);
 
                 token = body.token;
-                console.log('TOKEN', token);
 
                 vote1.voter = user._id;
                 vote2.voter = user._id;
@@ -173,6 +172,18 @@ describe('Vote E2E API', () => {
         };
     };
 
+    it('updates a vote', () => {
+        vote2.emoji = '😂';
+
+        return request.put(`/votes/${vote2._id}`)
+            .set('Authorization', 'admin')
+            .set('Token', token)
+            .send(vote2)
+            .then(checkOk)
+            .then(({ body }) => {
+                assert.deepEqual(body, vote2);
+            });
+    });
 
     it('gets all aggregated votes', () => {
         return request.post('/votes')
@@ -184,22 +195,10 @@ describe('Vote E2E API', () => {
                     .set('Token', token)
                     .then(checkOk)
                     .then(({ body }) => {
+                        vote2.answer = body[0]._id.answer;
+                        vote1.answer = body[1]._id.answer;
                         assert.deepEqual(body, [vote2, vote1].map(aggFields));
                     });
-            });
-        
-    });
-
-    it('updates a vote', () => {
-        vote2.emoji = '😂';
-
-        return request.put(`/votes/${vote2._id}`)
-            .set('Authorization', 'admin')
-            .set('Token', token)
-            .send(vote2)
-            .then(checkOk)
-            .then(({ body }) => {
-                assert.deepEqual(body, vote2);
             });
     });
 });

@@ -16,7 +16,7 @@
     <header>
             <img src="styles/images/dadJokeLibrary.png" alt="dad joke library logo" class="logo">
         <ul>
-            <li><a href="/admin">Admin</a></li>
+            <li class="admin"><a href="/admin">Admin</a></li>
             <li><a href="/questions">Submit a Prompt</a></li>
             <li><a href="/game">Vote</a></li>
             <li><a href="/results">Results</a></li>
@@ -53,9 +53,10 @@
                 <label for="setQuestion" class="setQuestion">Submit a joke prompt:</label>
                 <textarea id="setQuestion" rows="4" required></textarea>
 
-                <div class="status hidden"></div>
                 <button id="submitQuestion" type="submit">Submit</button>
             </form>
+
+            <div class="status">Prompt submitted!</div>
         </section>
 
         <section id="game-view" class="view">
@@ -93,7 +94,10 @@
             </section>
         </section>
 
-        
+        <section id="credits">
+            <p>Created by Team Meatstick</p>
+            <p>Alchemy Code Lab</p>
+        </section>
 
     </main>
     

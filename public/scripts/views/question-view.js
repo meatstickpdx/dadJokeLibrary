@@ -3,8 +3,6 @@
 (function (module) {
 
     const questionView = {};
-    const errorView = module.errorView;
-    const handleError = err => errorView.init(err);
 
     questionView.init = () => {
         $('#question-view').show();
@@ -48,6 +46,12 @@
             });
 
         $('#question-form').trigger('reset');
+
+        $('.status').toggleClass('status-submit');
+        
+        setTimeout(() => {
+            $('.status').toggleClass('status-submit');
+        }, 3000);
 
     };
 
