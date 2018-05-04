@@ -63,6 +63,11 @@ header li {
   margin-right: 1em;
 }
 
+header .logo {
+  width: 25%;
+  margin: 15px;
+}
+
 form {
   background: #f9f9f9;
   border: 1px solid #c1c1c1;
