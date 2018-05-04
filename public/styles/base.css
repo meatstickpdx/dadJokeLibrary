@@ -302,7 +302,10 @@ ol > li:before {
 }
 
 footer {
+  margin-top: 35%;
   text-align: center;
+  color: gray;
+  font-size: .7em;
 }
 
 @media (min-width: 400px) {
@@ -341,7 +344,7 @@ footer {
   .card {
       min-width: 250px;
   }
-  
+
   #results-box {
     display: flex;
     justify-content: center;
