@@ -9,6 +9,11 @@
         $('#auth-view').show();
         $('#sign-up').off('click').on('click', handleSignup);
         $('#login').off('click').on('click', handleLogin);
+        $('#logout').off('click').on('click', () => {
+            localStorage.clear();
+            page.redirect('/');
+            location.reload();
+        });
     };
     
     const handleSignup = event => {

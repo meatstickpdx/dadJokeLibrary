@@ -32,12 +32,6 @@
 
     page('/admin', () => adminView.init());
 
-    page('/logout', () => {
-        localStorage.clear();
-        page.redirect('/');
-        location.reload();
-    });
-
     page('*', () => page.redirect('/'));
 
     page({ hashbang: true });
