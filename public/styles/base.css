@@ -336,6 +336,7 @@ ol > li:before {
 @media (max-width: 600px) {
   .card {
       min-width: 250px;
+  }
 
   #results-box {
     display: flex;
