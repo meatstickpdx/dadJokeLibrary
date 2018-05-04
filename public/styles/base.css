@@ -345,31 +345,4 @@ footer {
       min-width: 250px;
   }
 
-  #results-box {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    align-content: center;
-  }
-
-  .results {
-    width: 30%;
-    text-align: center;
-  }
-
-  .results h3 {
-    font-size: 3em;
-  }
-
-  .results h3::after {
-    content:'';
-    position: absolute;
-    left: 0;
-    display: inline-block;
-    height: 1em;
-    width: 100%;
-    border-bottom: 2px solid;
-    margin-top: 10px;
-  }
-
 }
