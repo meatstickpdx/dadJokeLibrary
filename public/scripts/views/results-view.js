@@ -5,6 +5,11 @@
     const resultsView = {};
     const resultsTemplate = Handlebars.compile($(`#results-template`).html());
 
+    $('#question-results').empty();
+    $('#heart').empty();
+    $('#laughing').empty();
+    $('#facepalm').empty();
+
     resultsView.init = () => {
         const token = window.localStorage.getItem('token');
         
@@ -18,7 +23,7 @@
         })
             .then(res => res.json())
             .then(res => {
-                $('#question-results').append(`<h2>${res.prompt}</h2>`)
+                $('#question-results').append(`<h2>${res.prompt}</h2>`);
                 fetch(`/votes/results?question=${res._id}`, {
                     headers: {
                         'token' : token,
@@ -39,9 +44,6 @@
     };
 
     const loadResults = (resultsArray) => {
-        $('#heart').empty();
-        $('#laughing').empty();
-        $('#facepalm').empty();
 
         const heartArray = resultsArray.filter(vote => vote._id.emoji === '💖');
         heartArray.forEach( heart=> {

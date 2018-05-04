@@ -29,6 +29,10 @@ h3 {
   position: relative;
 }
 
+h4 {
+  font-size: .9em;
+}
+
 header {
   border-bottom: 1px solid lightgray;
   text-align: right;
@@ -89,6 +93,11 @@ form button {
 
 form button:hover {
   background: gold;
+}
+
+#list-box {
+  margin: auto;
+  width: fit-content;
 }
 
 select#question-list {
@@ -189,7 +198,38 @@ input:focus {
 }
 
 .results ol {
+  list-style-type: none;
+   
+  margin: 0;
+  margin-left: 3em;
+  padding: 0;
+   
   text-align: left;
+  counter-reset: li-counter;
+}
+
+ol > li{
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 0.5em;
+  min-height: 3em;
+  border-left: 2px solid #CCCCCC;
+}
+
+ol > li:before {
+  position: absolute;
+  top: 0;
+  left: -1em;
+  width: 0.8em;
+   
+  font-size: 2.5em;
+  line-height: 1;
+  font-weight: bold;
+  text-align: right;
+  color: gold;
+
+  content: counter(li-counter);
+  counter-increment: li-counter;
 }
 
 #question-results {

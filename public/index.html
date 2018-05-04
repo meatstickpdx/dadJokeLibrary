@@ -7,7 +7,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Lato" rel="stylesheet">
 
-    <link rel="stylesheet" href="normalize.css" type="text/css"/>
+    <link rel="stylesheet" href="normalize.css" type="text/html"/>
     <link rel="stylesheet" href="styles/base.css" type="text/css">
 
     <title>Dad Joke Library</title>
@@ -30,7 +30,7 @@
     <main>
         <section id="auth-view" class="view">
             <form id="login-form">
-                <label for="email" class="e-mail">E-mail:</label>
+                <label for="email" class="e-mail">Username:</label>
                 <input id="email" type="text" required>
              
                 <label for="password" class="password">Password:</label>
@@ -43,7 +43,10 @@
         </section>   
         
         <section id="admin-view" class="view">
-            <select id="question-list"></select>
+            <h2> Select a quesiton: </h2>
+            <section id="list-box">
+                <select id="question-list"></select>
+            </section>
         </section>
 
         <section id="question-view" class="view">

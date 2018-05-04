@@ -17,6 +17,7 @@
         })
             .then(response => response.json())
             .then(res => {
+                if (!res) $('#question-list').append( $(`<option>`, { text: `Please submit a quesiton` }));
                 res.forEach(question => {
                     $('#question-list').append(
                         $(`<option>`, {
