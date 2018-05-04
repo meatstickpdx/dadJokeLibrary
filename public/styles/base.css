@@ -6,6 +6,7 @@ html, body {
   font-family: 'Lato', sans-serif;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
 body{
@@ -302,10 +303,16 @@ ol > li:before {
 }
 
 footer {
-  margin-top: 35%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   text-align: center;
   color: gray;
   font-size: .7em;
+}
+
+footer p {
+  display: block;
 }
 
 @media (min-width: 400px) {
@@ -342,7 +349,11 @@ footer {
 
 @media (max-width: 600px) {
   .card {
-      min-width: 250px;
+    min-width: 250px;
   }
+
+  select#question-list {
+    max-width: 80%;
+  }  
 
 }
