@@ -1,14 +1,9 @@
 const { assert } = require('chai');
 const Question = require('../../lib/models/Question');
-const Answer = require('../../lib/models/Answer');
 const User = require('../../lib/models/User');
 const { getErrors } = require('./helpers');
 
 describe('Question model', () => {
-
-    const punchline = {
-        content: 'It got mugged'
-    };
 
     const joe = {
         username: 'Joe'
@@ -19,11 +14,9 @@ describe('Question model', () => {
         status: 'submit'
     };
 
-    const answer = new Answer(punchline);
     const user = new User(joe);
 
     it('is a valid model', () => {
-        data.answers = [answer._id];
         data.user = user._id;
         const question = new Question(data);
         data._id = question._id;
@@ -32,10 +25,11 @@ describe('Question model', () => {
 
     });
 
-    it('requires fields', () => {
+    it('required fields', () => {
         const question = new Question({});
-        const errors = getErrors(question.validateSync(), 1);
+        const errors = getErrors(question.validateSync(), 2);
         assert.equal(errors.prompt.kind, 'required');
+        assert.equal(errors.user.kind, 'required');
     });
 
     it('checks that status is an enum', () => {

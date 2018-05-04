@@ -8,10 +8,6 @@
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Lato" rel="stylesheet">
 
     <link rel="stylesheet" href="styles/base.css" type="text/css">
-    <!-- <link rel="stylesheet" href="styles/icons.css">
-    <link rel="stylesheet" href="styles/layout.css">
-    <link rel="stylesheet" href="styles/modules.css">
-    <link rel="stylesheet" href="styles/state.css"> -->
 
     <title>Dad Joke Library</title>
 </head>
@@ -20,7 +16,7 @@
         <h1>dadjokelibrary</h1>
         <ul>
             <li><a href="/admin">Admin</a></li>
-            <li><a href="/questions">Submit</a></li>
+            <li><a href="/questions">Submit a Prompt</a></li>
             <li><a href="/game">Vote</a></li>
             <li><a href="/results">Results</a></li>
             <li><a href="/">Log in</a></li>
@@ -29,6 +25,7 @@
 
         <p id="header-content">Please log in</p>
     </header>
+
     <main>
         <section id="auth-view" class="view">
             <form id="login-form">
@@ -46,17 +43,6 @@
         
         <section id="admin-view" class="view">
             <select id="question-list"></select>
-
-            <form id="game-time-form">
-                <label for="submissionTime" class="submissionTime">Submission Timer (mins):</label>
-                <input id="submissionTime" type="number" min="0" max="60" required>
-
-                <label for="votingTime" class="votingTime">Voting Timer (mins):</label>
-                <input id="votingTime" type="number" min="0" max="60" required>
-
-                <div class="status hidden"></div>
-                <button id="submitTimes" type="submit">Set</button>
-            </form>
         </section>
 
         <section id="question-view" class="view">
@@ -65,7 +51,7 @@
                 <textarea id="setQuestion" rows="4" required></textarea>
 
                 <div class="status hidden"></div>
-                <button id="submitQuestion" type="submit">Set</button>
+                <button id="submitQuestion" type="submit">Submit</button>
             </form>
         </section>
 
@@ -128,7 +114,6 @@
         <p>{{status}}: {{statusText}}</p>
     </script>
 
-
     <!-- config -->
     <script>            
          window.location.protocol === 'https:'
@@ -137,6 +122,7 @@
     
         window.module = {};
     </script>
+
     <!-- third party scripts -->
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

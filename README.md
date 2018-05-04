@@ -16,6 +16,9 @@ If you would like to play or improve upon this game, feel free.  This project in
 
 There are also extra routes on the backend that are not currently in use.  These are set up for future expansion.
 
+## Creating an Admin
+Many tools are only useable by admins. However, all users are non-admin by default. In order to create an admin user you will need to go into your MongoDB and manually change your "role" to "admin" *after* you create an account.
+
 ## HELP!
 If you run into any issues, please refer to the reference docs for the dependencies, which are readily available online or through MDN. If still having trouble, start an issue on github.
 
