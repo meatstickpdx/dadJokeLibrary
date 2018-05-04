@@ -7,13 +7,14 @@
 
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Lato" rel="stylesheet">
 
+    <link rel="stylesheet" href="normalize.css" type="text/html"/>
     <link rel="stylesheet" href="styles/base.css" type="text/css">
 
     <title>Dad Joke Library</title>
 </head>
 <body>
     <header>
-        <img src="styles/images/dadJokeLibrary.png" alt="dad joke library logo" class="logo">
+            <img src="styles/images/dadJokeLibrary.png" alt="dad joke library logo" class="logo">
         <ul>
             <li class="admin"><a href="/admin">Admin</a></li>
             <li><a href="/questions">Submit a Prompt</a></li>
@@ -22,14 +23,13 @@
             <li><a href="/">Log in</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
-
         <p id="header-content">Please log in</p>
     </header>
 
     <main>
         <section id="auth-view" class="view">
             <form id="login-form">
-                <label for="email" class="e-mail">E-mail:</label>
+                <label for="email" class="e-mail">Username:</label>
                 <input id="email" type="text" required>
              
                 <label for="password" class="password">Password:</label>
@@ -42,7 +42,10 @@
         </section>   
         
         <section id="admin-view" class="view">
-            <select id="question-list"></select>
+            <h2> Select a quesiton: </h2>
+            <section id="list-box">
+                <select id="question-list"></select>
+            </section>
         </section>
 
         <section id="question-view" class="view">
@@ -70,23 +73,25 @@
 
             <section id="answers"></section>
         </section>
-            <section id="results-view" class="view">
-                <section id="results-box">
-                    <section class="heart results">
-                        <h3>💖</h3>
-                        <ol id="heart"></ol>
-                    </section>
 
-                    <section class="laughing results">
-                        <h3>😂</h3>
-                        <ol id="laughing"></ol>
-                    </section>
-
-                    <section class="facepalm results">
-                        <h3>🤦</h3>
-                        <ol id="facepalm"></ol>
-                    </section>
+         <section id="results-view" class="view">
+            <section id="results-box">
+                <section id="question-results"></section>
+                <section class="heart results">
+                    <h3>💖</h3>
+                    <ol id="heart"></ol>
                 </section>
+
+                <section class="laughing results">
+                    <h3>😂</h3>
+                    <ol id="laughing"></ol>
+                </section>
+
+                <section class="facepalm results">
+                    <h3>🤦</h3>
+                    <ol id="facepalm"></ol>
+                </section>
+            </section>
         </section>
 
         <section id="credits">

@@ -117,11 +117,13 @@
             method: 'GET'
         })
             .then( response => response.json())
-            .then( ( votes ) =>
-                votes.forEach(vote => {
+            .then( ( votes ) => {
+                const votesByQuestion = votes.filter(vote => vote.question === gameView.currentQuestion._id);
+                votesByQuestion.forEach(vote => {
                     $(`.${vote.emoji}`).removeClass('active').addClass('disabled');
                     $(`.${vote.answer}`).removeClass('active').addClass('disabled');
-                }));
+                });
+            });
     };
    
     module.gameView = gameView;
