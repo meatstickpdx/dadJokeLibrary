@@ -167,6 +167,47 @@ input:focus {
   border: 1px solid gold;
 }
 
+#results-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  align-content: center;
+}
+
+.results {
+  width: 30%;
+  text-align: center;
+}
+
+.results ol {
+  text-align: left;
+}
+
+#question-results {
+  width: 100%;
+}
+
+#question-results h2{
+  margin-top: 2em;
+  margin-bottom: 0em;
+}
+
+.results h3 {
+  font-size: 3em;
+}
+
+.results h3::after {
+  content:'';
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  height: 1em;
+  width: 100%;
+  border-bottom: 2px solid;
+  margin-top: 15px;
+}
+
 @media (min-width: 400px) {
   form {
     overflow: hidden;
@@ -195,30 +236,6 @@ input:focus {
   #login {
     float: right;
     width: calc(80% - 200px);
-  }
-
-  #results-box {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    align-content: center;
-  }
-  .results {
-    width: 30%;
-    text-align: center;
-  }
-  .results h3 {
-    font-size: 3em;
-  }
-  .results h3::after {
-    content:'';
-    position: absolute;
-    left: 0;
-    display: inline-block;
-    height: 1em;
-    width: 100%;
-    border-bottom: 2px solid;
-    margin-top: 10px;
   }
   
 }
