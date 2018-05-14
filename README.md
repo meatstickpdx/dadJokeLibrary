@@ -1,5 +1,7 @@
 
-![img1](https://raw.githubusercontent.com/meatstickpdx/meatstick/cleanup/public/styles/images/dadJokeLibrary.png)
+<img src="https://raw.githubusercontent.com/meatstickpdx/meatstick/cleanup/public/styles/images/dadJokeLibrary.png" width="300">
+
+// initial grading commit
 
 ## Overview
 A simplistic router-based joke game. Fun for the whole family, except mostly just for dad.

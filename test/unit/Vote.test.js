@@ -9,9 +9,9 @@ describe('Vote model', () => {
     it('valid good model', () => {
         const data = {
             emoji: '🤦',
-            voter:  Types.ObjectId(), //eslint-disable-line
-            question:  Types.ObjectId(), //eslint-disable-line
-            answer:  Types.ObjectId(), //eslint-disable-line
+            voter:  Types.ObjectId(),
+            question:  Types.ObjectId(),
+            answer:  Types.ObjectId(),
         };
 
         const vote = new Vote(data);
@@ -32,9 +32,9 @@ describe('Vote model', () => {
     it('votes require emoji enum', () => {
         const vote = new Vote({
             emoji: ':lol:',
-            voter:  Types.ObjectId(), //eslint-disable-line
-            question:  Types.ObjectId(), //eslint-disable-line
-            answer:  Types.ObjectId(), //eslint-disable-line
+            voter:  Types.ObjectId(),
+            question:  Types.ObjectId(),
+            answer:  Types.ObjectId(),
         });
         const errors = getErrors(vote.validateSync(), 1);
         assert.equal(errors.emoji.kind, 'enum');
