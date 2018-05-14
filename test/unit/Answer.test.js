@@ -8,8 +8,8 @@ describe('Answer model', () => {
     it('valid good model', () => {
         const data = {
             content: 'To get to the other side.',
-            author: Types.ObjectId(), //eslint-disable-line
-            question:  Types.ObjectId(), //eslint-disable-line
+            author: Types.ObjectId(),
+            question:  Types.ObjectId(),
         };
 
         const answer = new Answer(data);

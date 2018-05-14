@@ -1,5 +1,5 @@
 
-![img1](https://raw.githubusercontent.com/meatstickpdx/meatstick/cleanup/public/styles/images/dadJokeLibrary.png)
+<img src="https://raw.githubusercontent.com/meatstickpdx/meatstick/cleanup/public/styles/images/dadJokeLibrary.png" width="300">
 
 // initial grading commit
 
