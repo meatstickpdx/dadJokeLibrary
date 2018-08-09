@@ -22,6 +22,11 @@
         })
             .then(res => res.json())
             .then(res => {
+                if(!res){
+                    $('#results-box').append(`<h2>No results yet!</h2>`);
+                    $('#results-view').show();
+                    return;
+                }
                 $('#question-results').append(`<h2>${res.prompt}</h2>`);
                 fetch(`/votes/results?question=${res._id}`, {
                     headers: {
