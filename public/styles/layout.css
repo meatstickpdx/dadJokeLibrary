@@ -11,7 +11,7 @@ html, body {
 
 header { height: 20vh;}
 
-main { min-height: 75vh; background-color: orange;}
+main { min-height: 75vh;}
 
 /* header */
 #header-logo {
@@ -37,6 +37,7 @@ nav p {
 
 nav ul {
   margin: 0; 
+  width: 100%;
   padding: .4rem;
   display: inline-flex;
   justify-content: space-around;
@@ -49,7 +50,7 @@ nav ul {
   padding-bottom: 3em;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   nav ul { width: 70%; }
 
   #header-content{ display: inline-block; }  
