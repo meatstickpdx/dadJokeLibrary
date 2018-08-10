@@ -8,22 +8,27 @@
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Lato" rel="stylesheet">
 
     <link rel="stylesheet" href="normalize.css" type="text/html"/>
-    <link rel="stylesheet" href="styles/base.css" type="text/css">
+    <link rel="stylesheet" href="styles/layout.css" type="text/css">
+    <link rel="stylesheet" href="styles/components.css" type="text/css">
 
     <title>Dad Joke Library</title>
 </head>
 <body>
     <header>
+        <section id="header-logo">
             <img src="styles/images/dadJokeLibrary.png" alt="dad joke library logo" class="logo">
-        <ul>
-            <li class="admin"><a href="/admin">Admin</a></li>
-            <li><a href="/questions">Submit a Prompt</a></li>
-            <li><a href="/game">Vote</a></li>
-            <li><a href="/results">Results</a></li>
-            <li><a href="/">Log in</a></li>
-            <li><a href="/logout" id="logout">Logout</a></li>
-        </ul>
-        <p id="header-content">Please log in</p>
+        </section>
+        <nav>
+            <ul id="navigation">
+                <li class="admin"><a href="/admin">Admin</a></li>
+                <li><a href="/questions">Submit a Prompt</a></li>
+                <li><a href="/game">Vote</a></li>
+                <li><a href="/results">Results</a></li>
+                <li><a href="/">Log in</a></li>
+                <li><a href="/logout" id="logout">Logout</a></li>
+            </ul>
+            <p id="header-content">Please log in</p>
+        </nav>
     </header>
 
     <main>
@@ -93,12 +98,11 @@
                 </section>
             </section>
         </section>
-
-        <footer><p>&copy; Copyright 2018 || All Rights Reserved || Created by Team Meatstick @ Alchemy Code Lab</p>
-        </footer>
-
     </main>
-    
+
+    <footer><p>&copy; Copyright 2018 || All Rights Reserved || Created by Team Meatstick @ Alchemy Code Lab</p>
+    </footer>
+
     <!-- TEMPLATES -->
     <script id="answers-template" type="text/x-handlebars-template">
         <section class="answer card">

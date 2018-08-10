@@ -1,0 +1,320 @@
+.hidden {
+    display: none;
+}
+    
+/* typography */
+
+body { font-family: 'Lato', sans-serif; }
+h1, h2 { font-family: 'Abril Fatface', cursive; }
+h1 { display: inline; }
+h2 { text-align: center; }
+h3 {
+    margin: .5em;
+    position: relative;
+}
+h4 { font-size: .9em; }
+
+
+/* header  */
+
+header { border-bottom: 1px solid lightgray; }
+
+header a, header a:visited{
+    color: black;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+  
+header a:hover, header a:active{
+    color: #92efcf;
+}
+
+header p, header ul {
+    text-align: right;
+}
+
+header p {
+    color: gray;
+    display: block;
+    font-size: .9em;
+}
+
+header ul{
+    list-style-type: none;
+}
+
+/* forms */
+form {
+background: #f9f9f9;
+border: 1px solid #c1c1c1;
+border-radius: 5px;
+margin-left: auto;
+margin-right: auto;
+margin-top: 2rem;
+max-width: 600px;
+padding: 1em;
+}
+
+form input {
+background: #fff;
+border: 1px solid #9c9c9c;
+margin-bottom: 1rem;
+}
+
+form button {
+background: #ffe5e5;
+border: 0;
+padding: 0.7em;
+}
+
+form button:hover {
+background: gold;
+}
+
+#list-box {
+margin: auto;
+width: fit-content;
+}
+
+.status {
+font-size: 1.5em;
+margin-top: 1em;
+opacity: 0;
+text-align: center;
+}
+
+.status-submit {
+animation-name: submit;
+animation-duration: 3s;
+}
+
+@keyframes submit {
+0% {
+    opacity: 1;
+}
+80%{
+    opacity: 1;
+}
+100%{
+    opacity: 0;
+}
+}
+
+select#question-list {
+background-color: #ffe5e5;
+font-size: 1em;
+height: 2em;
+margin: 1em;
+}
+
+label {
+display: block;
+text-align: right;
+padding: 0.5em 1.5em 0.5em 0;
+}
+
+textarea {
+display: block;
+margin: 0.5em 1.5em 0.5em 0;
+text-align: right;
+width: calc(64%);
+}
+
+textarea:focus {
+outline: 3px solid gold;
+}
+
+input {
+margin-bottom: 0.5rem;
+padding: 0.7em;
+width: 100%;
+}
+
+input:focus {
+outline: 3px solid gold;
+}
+
+#credits {
+color: gray;
+font-size: .8em;
+position: absolute;
+right: 50%;
+top: 85%;
+text-align: center;
+z-index: -1;
+}
+
+.emoji {
+font-size: 1.5em;
+position: absolute;
+right: calc(15%);
+}
+
+.emoji a {
+text-decoration: none;
+transition: 0.3s;
+}
+
+.emoji a.active:hover {
+-webkit-text-stroke-color: rgba(255, 238, 0, 0.712);
+-webkit-text-stroke-width: 3px;
+}
+
+.emoji .disabled {
+color: transparent;
+cursor: default;
+pointer-events: none;
+text-shadow: 0 0 0 rgba(131, 131, 131, 0.712);  
+}
+
+.vote {
+padding: 5px;
+}
+
+.card {
+background: #f9f9f9;
+border: 1px solid #c1c1c1;
+border-radius: 5px;
+max-width: calc(80% - 100px);
+margin-left: auto;
+margin-right: auto;
+margin-top: 2rem;
+min-width: 500px;
+padding: .8em;
+transition: 0.3s;
+}
+
+.card:hover {
+background: #ffe5e5;
+border: 1px solid gold;
+}
+
+#results-box {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+width: 100%;
+align-content: center;
+}
+
+.results {
+width: 30%;
+text-align: center;
+}
+
+.results ol {
+list-style-type: none;
+    
+margin: 0;
+margin-left: 3em;
+padding: 0;
+    
+text-align: left;
+counter-reset: li-counter;
+}
+
+ol > li{
+position: relative;
+margin-bottom: 20px;
+padding-left: 0.5em;
+min-height: 3em;
+border-left: 2px solid #CCCCCC;
+}
+
+ol > li h4{
+padding-top: .2em;
+}
+
+ol > li:before {
+position: absolute;
+top: 0;
+left: -1em;
+width: 0.8em;
+    
+font-size: 2.5em;
+line-height: 1;
+font-weight: bold;
+text-align: right;
+color: gold;
+
+content: counter(li-counter);
+counter-increment: li-counter;
+}
+
+#question-results {
+width: 100%;
+}
+
+#question-results h2{
+margin-top: 2em;
+margin-bottom: 0em;
+}
+
+.results h3 {
+font-size: 3em;
+}
+
+.results h3::after {
+content:'';
+position: absolute;
+left: 0;
+display: inline-block;
+height: 1em;
+width: 100%;
+border-bottom: 2px solid;
+margin-top: 15px;
+}
+
+footer {
+width: 100%;
+text-align: center;
+color: gray;
+font-size: .7em;
+}
+
+footer p {
+display: block;
+}
+
+@media (min-width: 400px) {
+form {
+    overflow: hidden;
+}
+  
+    label {
+      float: left;
+      width: 200px;
+    }
+  
+    input {
+      float: left;
+      width: calc(100% - 200px);
+    }
+  
+    button{
+      float: right;
+      width: calc(45%);
+    }
+  
+    #sign-up {
+      float: left;
+      width: calc(80% - 200px);
+    }
+  
+    #login {
+      float: right;
+      width: calc(80% - 200px);
+    }
+  
+  }
+  
+  @media (max-width: 600px) {
+    .card {
+      min-width: 250px;
+    }
+  
+    select#question-list {
+      max-width: 80%;
+    }  
+  
+  } */
